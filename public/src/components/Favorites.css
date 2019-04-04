@@ -1,0 +1,27 @@
+.collapsible{
+  background-color: #777;
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.favoriteList{
+	overflow: auto;
+	display: flex;
+	flex-grow: 10;
+}
+
+.favorites{
+  display: flex;
+  overflow: auto;
+  align-items: center;
+}
+
+.favoriteButtonDiv{
+	width: 100px;
+}

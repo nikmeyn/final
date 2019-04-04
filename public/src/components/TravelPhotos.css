@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.photoBox:active {
+	background-color: yellow;
+}
+.filterButton{
+	margin-left: 1em;
+	margin-top: 1em;
+}
+
+.inputPrompt{
+	display: flex;
+	margin-top: 2em;
+}
+
+.photos{
+	display: grid;
+	background-color: white;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto;
+	grid-row-gap: 0;
+	flex-wrap: wrap;
+	float:left;
+	overflow-y: auto;
+	height: 800px;
+}
+
+.photoBox {
+	position: relative;
+	margin-top: 1em;
+}
+
+.favItem {
+	position: relative;
+}
+
+.photoThumb{
+	margin-right: 8px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+.closeButton {
+	position: absolute;
+	background: red;
+	color: black;
+	top: -12px;
+	right: -17px;
+	margin-left: auto;
+	visibility: hidden;
+}
+
+.photoBox:hover .closeButton{
+	visibility: visible;
+}
+
+.favItem:hover .closeButton{
+	visibility: visible;
+	padding: 3px 3px 3px 3px;
+	top: 0px;
+	right: -7px;
+}
+
+.aboutPageInfo{
+  background: rgba(0,0,0, 0.5); 
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.aboutPageInfo p{
+	  font-family: 'Lato', sans-serif;
+}
+.aboutPage {
+  color: white;
+  background: url('https://source.unsplash.com/6U4wogjLArk/3840x5760') center/cover no-repeat;
+  height: 750px;
+}
+
+
+.glyphicon {
+    font-size: 100px;
+}
+
+.viewButton:hover span {
+display:none
+}
+.viewButton:hover:before {
+content:"View"
+}
+
+.favButton:hover span {
+display:none
+}
+.favButton:hover:before {
+content:"Fav"
+}
+
+.editButton:hover span {
+display:none
+}
+.editButton:hover:before {
+content:"Edit"
+}
+
+.mapButton:hover span {
+display:none
+}
+.mapButton:hover:before {
+content:"Map"
+}
+
+.container {
+	background-color: white;
+}
