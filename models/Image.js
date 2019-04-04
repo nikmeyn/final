@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // define a schema that maps to the structure of the data in MongoDB
 const imageSchema = new mongoose.Schema({
-    id: Number,
+    id: String,
     title: String,
     description: String,
     location: {
@@ -15,9 +15,43 @@ const imageSchema = new mongoose.Schema({
     },
     user: {
         userId: Number,
+        picture: {
+            large: String,
+            thumbnail: String
+        },
         firstname: String,
         lastname: String
     },
-    filename: String
+    exif: {
+        make: String,
+        model: String,
+        exposure_time: String,
+        aperture: String,
+        focal_length: String,
+        iso: Number
+    },
+    filename: String,
+    colors: [
+        {
+            hex: String, 
+            name: String
+        },
+        {
+            hex: String, 
+            name: String
+        },
+        {
+            hex: String, 
+            name: String
+        },
+        {
+            hex: String, 
+            name: String
+        },
+        {
+            hex: String, 
+            name: String
+        }
+    ]
 });
 module.exports = mongoose.model('Image', imageSchema);
