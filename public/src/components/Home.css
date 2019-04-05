@@ -36,10 +36,23 @@ h2{
   align-items: center;
 }
 
+.bannerLogin {
+  color: white;
+  background: url('https://source.unsplash.com/kyXw6T6i_-A/5979x3986') center/cover no-repeat;
+  height: 750px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bannerLogin h1{
+  font-size: 7em;
+  padding: 0em 0em 0.25em 0em;
+  
+}
 .banner p {
    margin-top: 0.75em;
 }
-
 
 .banner button {
    font-size: 1.75rem;
@@ -47,10 +60,67 @@ h2{
 
 }
 
-
 .splashPageDiv {
 	  background: rgba(0,0,0, 0.5); 
 	  padding-bottom: 8px;
 }
 
+.loginDiv{
+  position: absolute;
+  left: 3em;
+  top: 5em;
+}
+::placeholder {
+  color: black;
+  font-weight: bolder;
+}
+
+.submitBtn{
+  margin: 2em 0em 0em 20em;
+  padding: 1em;
+  font-weight: bolder;
+}
+
+/* animation learned from: https://codepen.io/maheshambure21/pen/EozKKy start*/
+:focus{
+  outline: none;
+
+}
+.col-3{
+  position: relative;
+} 
+
+/* necessary to give position: relative to parent. */
+input[type="password"], input[type="email"]{
+  font: 20px/29px "Lato", Arial, sans-serif; 
+  width: 100%; 
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  font-weight: bolder;
+  box-sizing: border-box; 
+  letter-spacing: 1px;}
+
+.effect-2{
+  border: 0; 
+  padding: 7px 0; 
+  border-bottom: 8px solid #ccc;
+}
+
+.effect-2 ~ .focus-border{
+  position: absolute; 
+  bottom: 0; 
+  left: 50%; 
+  width: 0; 
+  height: 8px; 
+  background-color: #4caf50; 
+  transition: 0.4s;
+}
+
+.effect-2:focus ~ .focus-border{
+  width: 100%; 
+  transition: 0.4s; 
+  left: 0;
+}
+
+/* animation learned from: https://codepen.io/maheshambure21/pen/EozKKy end*/
 

@@ -3,6 +3,7 @@ import PhotoBrowser from './components/PhotoBrowser.js';
 import * as cloneDeep from 'lodash/cloneDeep';
 import { Route } from 'react-router-dom';
 import Home from './components/Home.js';
+import Login from './components/Login'; //login
 import About from './components/About.js';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
@@ -144,8 +145,9 @@ class App extends Component {
 			  }
     return (
       <div>
-		<Route path='/' exact component={Home} />
+		<Route path='/' exact component={Login} />
 		<Route path='/home' exact component={Home} />
+		<Route path='/login' exact component={Login} /> 
 		<Route path='/browse' exact 
 			render={ (props) =>
 				<PhotoBrowser 
