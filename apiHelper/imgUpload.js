@@ -1,11 +1,11 @@
 //Gotten from  https://medium.com/google-cloud/upload-images-to-google-cloud-storage-with-react-native-and-expressjs-61b8874abc49.
 
 'use strict';
-const storage = require('@google-cloud/storage');
+const {Storage} = require('@google-cloud/storage');
 const fs = require('fs')
 
 //Changes needed!
-const gcs = storage({
+const gcs = new Storage({
   projectId: 'your-project-id',
   keyFilename: '/path/to/keyfile.json'
 });

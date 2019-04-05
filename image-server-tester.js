@@ -2,15 +2,27 @@ require('./handlers/dataConnector.js').connect();
 const express = require('express');
 const parser = require('body-parser');
 const Image = require('./models/Image');
-const testRouter = require('./handlers/apiRouter.js');
+const testRouter = require('./apiRouter.js');
+const path = require('path');
 
 const app = express();
 
-app.set('views', './views');
-app.set('view engine', 'pug');
+//Static file declaration
+app.use(express.static(path.join(__dirname, 'public/build')));
 
-app.use(express.static('public'));
-app.use('/static', express.static('public'));
+//production mode
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'public/build')));
+    //
+    app.get('*', (req, res) => {
+      res.sendfile(path.join(__dirname = 'public/build/index.html'));
+    })
+}
+
+//build mode
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/public/public/index.html'));
+})
 
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
