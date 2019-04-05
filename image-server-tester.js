@@ -2,7 +2,7 @@ require('./handlers/dataConnector.js').connect();
 const express = require('express');
 const parser = require('body-parser');
 const Image = require('./models/Image');
-const testRouter = require('./handlers/apiRouter.js');
+const testRouter = require('./apiRouter.js');
 
 const app = express();
 

@@ -1,7 +1,8 @@
 //Handles GET, POST, and PUT reguest to the server api.
+var ObjectID = require('mongodb').ObjectID;
 const Multer = require('multer');
 const imgUpload = require('./apiHelper/imgUpload');
-var ObjectID = require('mongodb').ObjectID;
+
 
 const multer = Multer({
   storage: Multer.MemoryStorage,
@@ -27,7 +28,7 @@ const handleSingleImage = (app, Image) => {
 	app.route('/api/images/:id')
 	.get(function (req,resp) {
 		//CHECK FOR VALID API HERE!
-		Image.find({id: req.params.id}, (err, data) => {
+		Image.findOne({'id': req.params.id}).exec( (err, data) => {
 			if (err) {
 				resp.json({ message: 'Image not found' });
 			} else {
@@ -39,9 +40,9 @@ const handleSingleImage = (app, Image) => {
 		//CHECK FOR LOGIN HERE!
 		Image.insert({'id': req.body.id, 'title': req.body.title, 'description': req.body.description, 'location': {'iso': req.body.iso, 'country': req.body.country, 'city': req.body.city, 'cityCode': req.body.cityCode, 'continent': req.body.continent, 'latitude': req.body.latitude, 'longitude': req.body.logitude}, 'user': {'userid': req.body.userid, 'firstname': req.body.firstname, 'lastname': req.body.lastname}, 'filename': req.body.filename }, (err, data) => {
 			if (err) {
-				resp.json({ message: 'Invalid data, or ID already taken.' });
+			resp.json({ message: 'Invalid data, or ID already taken.' });
 			} else {
-				resp.json({ message: 'Succesful Insertion.' });
+			resp.json({ message: 'Succesful Insertion.' });
 			}
 		});
 	})
