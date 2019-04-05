@@ -4,7 +4,7 @@
   "description": "Assignment 2",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node image-server-tester.js"
   },
   "author": "Nik, James, John, Gio",
   "license": "ISC",

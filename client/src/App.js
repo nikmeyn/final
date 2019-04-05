@@ -28,7 +28,8 @@ class App extends Component {
 	  }
 	
 	async componentDidMount() {
-		try {const url = "https://randyconnolly.com/funwebdev/services/travel/images.php";
+		try {//const url = "https://randyconnolly.com/funwebdev/services/travel/images.php";
+			 const url = "api/images";
 			 const response = await fetch(url);
 			 const jsonData = await response.json();
 			 this.setState( {photos: jsonData} );
