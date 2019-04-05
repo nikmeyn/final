@@ -7,6 +7,15 @@ const path = require('path');
 
 const app = express();
 
+app.use(parser.json());
+app.use(parser.urlencoded({extended: true}));
+
+// use the route handlers
+testRouter.handleAllImages(app, Image);
+testRouter.handleSingleImage(app, Image);
+testRouter.handleUploadImage(app, Image);
+
+
 //Static file declaration
 app.use(express.static(path.join(__dirname, 'public/build')));
 
@@ -24,13 +33,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/public/public/index.html'));
 })
 
-app.use(parser.json());
-app.use(parser.urlencoded({extended: true}));
-
-// use the route handlers
-testRouter.handleAllImages(app, Image);
-testRouter.handleSingleImage(app, Image);
-testRouter.handleUploadImage(app, Image);
 
 app.use(function (req, res, next) {
  res.status(404).send("Sorry can't find that!")
