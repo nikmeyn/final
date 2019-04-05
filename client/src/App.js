@@ -34,7 +34,7 @@ class App extends Component {
 			 const response = await fetch(url);
 			 const jsonData = await response.json();
 			 this.setState( {photos: jsonData} );
-			 document.title = "Assignment 1";
+			 document.title = "Assignment 2";
 			 this.connecToServer();
 		}
 		catch (error) {

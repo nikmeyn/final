@@ -11,7 +11,7 @@ class Home extends React.Component{
 			 <title>Login</title>
 			</Helmet>
             <div className="loginDiv">
-                <form>
+                <form action='Home'>
                     <h1>Welcome</h1>
 
                     <div className="col-3">
