@@ -9,25 +9,19 @@
   "author": "Nik, James, John, Gio",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "bcrypt": "^3.0.5",
     "cookie-parser": "^1.4.4",
-    "dotenv": "^7.0.0",
+    "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
-    "mongoose": "^5.4.22",
+    "mongoose": "^5.4.17",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
-=======
+    "passport-local": "^1.0.0",
     "@google-cloud/storage": "^2.5.0",
     "concurrently": "^4.1.0",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "mongoose": "^5.4.17",
     "multer": "^1.4.1"
->>>>>>> c27e9a8555d4f6cd608e8060fe60c56e711f8d27
   }
 }
