@@ -13,7 +13,7 @@ class EditPhotoDetails extends React.Component {
 				  <div className="detailsPhotoBox">
 					<form className="photoForm">
 					   <legend>Edit Photo Details</legend>
-					   <img src={imgURL+photo.path} alt={photo.title} />
+					   <img src={imgURL+photo.filename} alt={photo.title} />
 					   
 					   <label>Title</label>
 					   <input type='text' name='title' value={photo.title}  onChange={this.handleChange} />
@@ -22,16 +22,16 @@ class EditPhotoDetails extends React.Component {
 					   <input type='text' name='description' value={photo.description}  onChange={this.handleChange} />
 						
 					   <label>City</label>
-					   <input type='text' name='city' value={photo.city} onChange={this.handleChange}/>
+					   <input type='text' name='city' value={photo.location.city} onChange={this.handleChange}/>
 					   
 					   <label>Country</label>
-					   <input type='text' name='country' value={photo.country}  onChange={this.handleChange}/>
+					   <input type='text' name='country' value={photo.location.country}  onChange={this.handleChange}/>
 					   
 					   <label>Longitude</label>
-					   <input type='number' name='longitude' value={photo.longitude}  onChange={this.handleChange}/>
+					   <input type='number' name='longitude' value={photo.location.longitude}  onChange={this.handleChange}/>
 					   
 					   <label>Latitude</label>
-					   <input type='number' name='latitude' value={photo.latitude}  onChange={this.handleChange}/>
+					   <input type='number' name='latitude' value={photo.location.latitude}  onChange={this.handleChange}/>
 					   
 					</form>
 						<button onClick={this.handleViewClick}>View</button>

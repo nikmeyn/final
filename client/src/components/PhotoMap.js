@@ -28,7 +28,7 @@ class PhotoMap extends React.Component{
 					const userGeolocationLat = this.state.userGeolocationObj.coords.latitude;
 					const userGeolocationLong = this.state.userGeolocationObj.coords.longitude;
 					var userLoc = { latitude: userGeolocationLat, longitude: userGeolocationLong };
-					var photoLoc = { latitude: photo.latitude, longitude: photo.longitude};
+					var photoLoc = { latitude: photo.location.latitude, longitude: photo.location.longitude};
 					//haversince returns distance in metres converting it to km
 					const haversineKilometers = haversine(userLoc, photoLoc)/1000;
 					haversineRounded = haversineKilometers.toFixed(2);
@@ -43,9 +43,9 @@ class PhotoMap extends React.Component{
 				  <div className="detailsPhotoMapBox">
 					<div className="photoThumbLeft">
 						<div className="photoDivMap">
-							<img src={imgURL+photo.path} alt={photo.title} />
+							<img src={imgURL+photo.filename} alt={photo.title} />
 							<h2>{photo.title}</h2>
-							<h2>{photo.city},{photo.country}</h2>
+							<h2>{photo.location.city},{photo.location.country}</h2>
 							<button onClick={this.handleViewClick}>View</button>
 							<button onClick={this.handleEditClick}>Edit</button>
 						</div>
@@ -55,14 +55,14 @@ class PhotoMap extends React.Component{
 					    <div className="mapDiv">
 							<Map google={this.props.google}
 							style={{width: '35em', height: '50%', position: 'relative'}}
-							  	initialCenter={{lat: photo.latitude, lng: photo.longitude}}	
-								center={{lat: photo.latitude, lng: photo.longitude}}	
+							  	initialCenter={{lat: photo.location.latitude, lng: photo.location.longitude}}	
+								center={{lat: photo.location.latitude, lng: photo.location.longitude}}	
 								zoom={12}
 								onClick={this.onMapClicked}>
 								<Marker
 								title={photo.title}
 								name={photo.title}
-								position={{lat: photo.latitude, lng: photo.longitude}}
+								position={{lat: photo.location.latitude, lng: photo.location.longitude}}
 								onClick={this.onMarkerClick}/>
 								<InfoWindow
 								marker={this.state.activeMarker}

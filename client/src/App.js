@@ -56,11 +56,11 @@ class App extends Component {
         }
 
         photoToReplace.title = photo.title;
-        photoToReplace.city = photo.city;
-        photoToReplace.country = photo.country;
+        photoToReplace.city = photo.location.city;
+        photoToReplace.country = photo.location.country;
         photoToReplace.description = photo.description;
-        photoToReplace.latitude = photo.latitude;
-        photoToReplace.longitude = photo.longitude;
+        photoToReplace.latitude = photo.location.latitude;
+        photoToReplace.longitude = photo.location.longitude;
 
         this.setState({
             photos: copyPhotos,
@@ -129,9 +129,9 @@ class App extends Component {
         let filteredPhotos = [];
         if (text !== "All") {
             if (criteria === "country") {
-                filteredPhotos = this.state.photos.filter((photo) => photo.country.toLowerCase() === text.toLowerCase());
+                filteredPhotos = this.state.photos.filter((photo) => photo.location.country.toLowerCase() === text.toLowerCase());
             } else {
-                filteredPhotos = this.state.photos.filter((photo) => photo.city.toLowerCase() === text.toLowerCase());
+                filteredPhotos = this.state.photos.filter((photo) => photo.location.city.toLowerCase() === text.toLowerCase());
             }
         } else {
             filteredPhotos = [];
