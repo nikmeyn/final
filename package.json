@@ -6,7 +6,7 @@
   "scripts": {
     "node-app": "node app.js",
     "react-app": "npm start --prefix ./client",
-    "start": "npm-run-all react-app node-app",
+    "start": "npm-run-all node-app react-app",
     "dev": "nodemon app.js"
   },
   "author": "Nik, James, John, Gio",
