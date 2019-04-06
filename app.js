@@ -53,14 +53,14 @@ app.get('/api/images/:id', (req,resp) => {
 		if (err) {
 			return resp.status(500).send(err);
 		} else {
-			resp.send.json(data);
+			resp.send(data);
 		}
 	});
 });
 
 app.post('/api/images/:id', (req,resp) => {
 	//CHECK FOR LOGIN HERE!
-	collection.insert({'id': request.params.id, 'title': req.body.title, 'description': req.body.description, 'location': {'iso': req.body.iso, 'country': req.body.country, 'city': req.body.city, 'cityCode': req.body.cityCode, 'continent': req.body.continent, 'latitude': req.body.latitude, 'longitude': req.body.logitude}, 'user': {'userid': req.body.userid, 'firstname': req.body.firstname, 'lastname': req.body.lastname}, 'filename': req.body.filename }, (err, data) => {
+	collection.insert({'id': request.params.id, 'title': req.body.title, 'description': req.body.description, 'location': {'iso': req.body.iso, 'country': req.body.country, 'city': req.body.city, 'cityCode': req.body.cityCode, 'continent': req.body.continent, 'latitude': req.body.latitude, 'longitude': req.body.logitude}, 'user': {'userid': req.body.userid, 'pictire': {'large': req.body.large, 'thumbnail': req.body.thumb}, 'firstname': req.body.firstname, 'lastname': req.body.lastname}, 'exif':{'make': req.body.make, 'model': req.body.model, 'exposure_time': req.body.exposure, 'aperture': req.body.aperture, 'focal_length': req.body.focal, 'iso': req.body.isoexif},'filename': req.body.filename, 'colors':[{'hex': req.body.hex1, 'name': req.body.name1}, {'hex': req.body.hex2, 'name': req.body.name2}, {'hex': req.body.hex3, 'name': req.body.name3}, {'hex': req.body.hex4, 'name': req.body.name4}, {'hex': req.body.hex5, 'name': req.body.name5} ] }, (err, data) => {
 		if (err) {
 			return resp.status(500).send(err);
 		} else {
@@ -72,7 +72,7 @@ app.post('/api/images/:id', (req,resp) => {
 app.put('/api/images/:id', (req,resp) => {
 	//CHECK FOR LOGIN HERE!
 	//There needs to be ._id includeds I think for this to work for some reason...
-	collection.findOneAndUpdate({ "_id": ObjectID(req.body._id)}, { $set: { 'id': req.body.id, 'title': req.body.title, 'description': req.body.description, 'location': { 'iso': req.body.iso, 'country': req.body.country, 'city': req.body.city, 'cityCode': req.body.cityCode, 'continent': req.body.continent, 'latitude': req.body.latitude, 'longitude': req.body.logitude}, 'user': { 'userid': req.body.userid, 'firstname': req.body.firstname, 'lastname': req.body.lastname }, 'filename': req.body.filename } }, {new: true}, (err, data) => {
+	collection.findOneAndUpdate({ "_id": ObjectID(req.body._id)}, { $set: {'id': request.body.id, 'title': req.body.title, 'description': req.body.description, 'location': {'iso': req.body.iso, 'country': req.body.country, 'city': req.body.city, 'cityCode': req.body.cityCode, 'continent': req.body.continent, 'latitude': req.body.latitude, 'longitude': req.body.logitude}, 'user': {'userid': req.body.userid, 'pictire': {'large': req.body.large, 'thumbnail': req.body.thumb}, 'firstname': req.body.firstname, 'lastname': req.body.lastname}, 'exif':{'make': req.body.make, 'model': req.body.model, 'exposure_time': req.body.exposure, 'aperture': req.body.aperture, 'focal_length': req.body.focal, 'iso': req.body.isoexif},'filename': req.body.filename, 'colors':[{'hex': req.body.hex1, 'name': req.body.name1}, {'hex': req.body.hex2, 'name': req.body.name2}, {'hex': req.body.hex3, 'name': req.body.name3}, {'hex': req.body.hex4, 'name': req.body.name4}, {'hex': req.body.hex5, 'name': req.body.name5} ] } }, {new: true}, (err, data) => {
 		if (err) {
 			return resp.status(500).send(err);
 		} else {
