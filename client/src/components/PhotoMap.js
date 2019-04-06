@@ -21,7 +21,7 @@ class PhotoMap extends React.Component{
 	render() {
 		if (this.props.photos.length > 0 ) {
 			const id = this.props.currentPhoto;
-			const imgURL = `https://storage.googleapis.com/funwebdev-3rd-travel/square-medium/`;
+			const imgURL = `https://storage.googleapis.com/web3-assignment2-photos/photos/square/`;
 			let haversineRounded = -1; //flag
 			const photo = this.props.photos.find(p => p.id === id);			
 				if(this.state.userGeolocationObj){

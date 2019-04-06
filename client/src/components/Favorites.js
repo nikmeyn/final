@@ -56,7 +56,7 @@ class Favorites extends React.Component{
  
  downloadZip = () => {
 var zip = new jszip();
-const imgPath = `https://storage.googleapis.com/funwebdev-3rd-travel/large/`;
+const imgPath = `https://storage.googleapis.com/web3-assignment2-photos/photos/large/`;
 jszipUtils.getBinaryContent(imgPath + '6592902825.jpg', function (err, data) {
    if(err) {
 	   console.log("error!!!");

@@ -1,0 +1,71 @@
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+const PORT = process.env.PORT || 3000;
+
+const app = express();
+
+// Passport Config
+require('./config/passport')(passport);
+
+// DB Config
+const db = require('./config/keys').MongoURI;
+
+// Connect to MongoDB
+mongoose
+	.connect(
+		db, {
+			useNewUrlParser: true
+		}
+	)
+	.then(() => console.log('MongoDB Connected...'))
+	.catch(err => console.log(err));
+
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+
+
+app.use(express.static('public'));
+app.use('/static', express.static('public'));
+
+app.use(parser.json());
+app.use(parser.urlencoded({extended: true}));
+
+//Body parser
+app.use(express.urlencoded({
+	extended: false
+}));
+
+//express session
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//connect flash
+app.use(flash());
+
+//global variables
+app.use((req, resp, next) => {
+	resp.locals.succes_msg = req.flash('success_msg');
+	resp.locals.error_msg = req.flash('error_msg');
+	resp.locals.error = req.flash('error');
+	next();
+});
+
+
+//Routes
+app.use('/', require('./client/src/App'));
+app.use('/users', require('./routes/users'));
+
+app.listen(PORT, console.log(`Node Server Started on port ${PORT}`));

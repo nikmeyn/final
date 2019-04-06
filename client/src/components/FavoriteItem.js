@@ -2,7 +2,7 @@ import React from 'react';
 import './TravelPhotos.css';
 class FavoriteItem extends React.Component{
 	render(){
-		const imgURL = `https://storage.googleapis.com/funwebdev-3rd-travel/square-medium/${this.props.photo.path}`;
+		const imgURL = `https://storage.googleapis.com/web3-assignment2-photos/photos/square/${this.props.photo.filename}`;
 		return(
 		<figure className="favItem"> 
 		<button className="closeButton" onClick={this.handleDeleteClick}>X</button>

@@ -5,7 +5,7 @@ class EditPhotoDetails extends React.Component {
 	
 	render() {
 		const id = this.props.currentPhoto;
-		const imgURL = `https://storage.googleapis.com/funwebdev-3rd-travel/medium/`;
+		const imgURL = `https://storage.googleapis.com/web3-assignment2-photos/photos/large/`;
 				if (this.props.photos.length > 0 ) {
 					const photo = this.props.photos.find(p => p.id === id);
 				return(

@@ -6,7 +6,7 @@ import './TravelPhotos.css';
 
 class PhotoThumb extends React.Component {
 	render() {
-	const imgURL = `https://storage.googleapis.com/funwebdev-3rd-travel/square-medium/${this.props.photo.path}`;
+	const imgURL = `https://storage.googleapis.com/web3-assignment2-photos/photos/large/${this.props.photo.filename}`;
 		
 	return (
 	<div  className="photoBox" onClick={this.handleViewClick}>
@@ -16,7 +16,7 @@ class PhotoThumb extends React.Component {
 		<div>
 			<button className="closeButton" onClick={this.handleDeleteClick}>X</button>
 			<h3>{this.props.photo.title}</h3>
-			<p>{this.props.photo.city}, {this.props.photo.country}</p>
+			<p>{this.props.photo.location.city}, {this.props.photo.location.country}</p>
 			<button className="viewButton" onClick={this.handleViewClick} title="View"><span role="img" aria-label="View">👀</span></button>
 			<button className="favButton" onClick={this.handleFavoriteClick} title="Fav"><span role="img" aria-label="Fav">❤</span></button>
 			<button className="mapButton" onClick={this.handleMapClick} title="Map"><span role="img" aria-label="Map">📍</span></button>
