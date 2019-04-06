@@ -3,6 +3,14 @@ const parser = require('body-parser');
 const path = require('path');
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectID;
+const Multer = require('multer');
+const imgUpload = require('./apiHelper/imgUpload');
+
+
+const multer = Multer({
+  storage: Multer.MemoryStorage,
+  fileSize: 5 * 1024 * 1024
+});
 
 const CONNECTION_URL = "mongodb+srv://admin-1:passwordadmin-1@web3-asg2-rk0iv.mongodb.net/test?retryWrites=true";
 const DATABASE_NAME = "mytravels";
@@ -37,6 +45,50 @@ app.get("/api/images", (request, response) => {
       }
       response.send(result);
   });
+});
+
+app.get('/api/images/:id', (req,resp) => {
+	//CHECK FOR VALID API HERE!
+	collection.findOne({id: req.params.id}, (err, data) => {
+		if (err) {
+			return resp.status(500).send(err);
+		} else {
+			resp.send.json(data);
+		}
+	});
+});
+
+app.post('/api/images/:id', (req,resp) => {
+	//CHECK FOR LOGIN HERE!
+	collection.insert({'id': request.params.id, 'title': req.body.title, 'description': req.body.description, 'location': {'iso': req.body.iso, 'country': req.body.country, 'city': req.body.city, 'cityCode': req.body.cityCode, 'continent': req.body.continent, 'latitude': req.body.latitude, 'longitude': req.body.logitude}, 'user': {'userid': req.body.userid, 'firstname': req.body.firstname, 'lastname': req.body.lastname}, 'filename': req.body.filename }, (err, data) => {
+		if (err) {
+			return resp.status(500).send(err);
+		} else {
+			resp.send(data);
+		}
+	});
+});
+
+app.put('/api/images/:id', (req,resp) => {
+	//CHECK FOR LOGIN HERE!
+	//There needs to be ._id includeds I think for this to work for some reason...
+	collection.findOneAndUpdate({ "_id": ObjectID(req.body._id)}, { $set: { 'id': req.body.id, 'title': req.body.title, 'description': req.body.description, 'location': { 'iso': req.body.iso, 'country': req.body.country, 'city': req.body.city, 'cityCode': req.body.cityCode, 'continent': req.body.continent, 'latitude': req.body.latitude, 'longitude': req.body.logitude}, 'user': { 'userid': req.body.userid, 'firstname': req.body.firstname, 'lastname': req.body.lastname }, 'filename': req.body.filename } }, {new: true}, (err, data) => {
+		if (err) {
+			return resp.status(500).send(err);
+		} else {
+			resp.send(data);
+		}
+	});
+	//If this does not work we can use .delete() then .insert()
+});
+
+app.post('/api/upload', multer.single('image'), imgUpload.uploadToGcs, function (req,resp) {
+	//Check for login
+	const data = req.body;
+	 if (req.file && req.file.cloudStoragePublicUrl) {
+		data.imageUrl = req.file.cloudStoragePublicUrl;
+		}
+	resp.send(data);
 });
 
 app.get('*', (req, res) => {
