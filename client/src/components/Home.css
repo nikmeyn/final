@@ -81,6 +81,17 @@ h2{
   font-weight: bolder;
 }
 
+.loginButton {
+    background: var(--button-back);
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 1em;
+    margin: 2em 0em 0em 20em;
+    font-weight: bolder;
+}
+
 /* animation learned from: https://codepen.io/maheshambure21/pen/EozKKy start*/
 :focus{
   outline: none;
