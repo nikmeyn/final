@@ -44,12 +44,12 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gmoro646/web3Asg2.git"
+    "url": "git+https://github.com/nikmeyn/final.git"
   },
   "author": "James, John, Nik, Gio",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gmoro646/web3Asg2/issues"
+    "url": "https://github.com/nikmeyn/final/issues"
   },
-  "homepage": "https://github.com/gmoro646/web3Asg2#readme"
+  "homepage": "https://github.com/nikmeyn/final#readme"
 }
