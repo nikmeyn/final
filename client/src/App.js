@@ -6,7 +6,7 @@ import Home from './components/Home.js';
 import Login from './components/Login'; //login
 import About from './components/About.js';
 import Alert from 'react-s-alert';
-import UploadImage from './components/upload-image.js'
+import UploadImage from './components/upload.js'
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
@@ -170,7 +170,7 @@ class App extends Component {
                                clearPhotosAfterFilter={this.clearPhotosAfterFilter}/>}
                 />
                 <Route path='/about' exact component={About} />
-                <Route path='/upload-image' exact component={UploadImage} />
+                <Route path='/upload' exact component={UploadImage} />
                
                 <Alert stack={{limit: 1}}/>
             </div>

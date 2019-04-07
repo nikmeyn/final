@@ -12,7 +12,7 @@ return(
 <Link to='/about'>
 <button>About</button>
 </Link>
-<Link to='/upload-image'>
+<Link to='/upload'>
 <button>Upload Image</button>
 </Link>
 <Link to='/Login'>
