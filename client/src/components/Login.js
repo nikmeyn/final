@@ -10,7 +10,7 @@ class Login extends React.Component{
         this.isChecked = false
         this.state = {
             uploadInProgress: false,
-            user: 0,
+            user: {},
         };
     }
 
@@ -57,8 +57,8 @@ class Login extends React.Component{
             if (userdata.success === true && userdata.token) {
                 localStorage.setItem('token', userdata.token);
 
-                this.setState({ user: userdata.loginUser});
-                this.props.updateUserLoggedIn(userdata.loginUser);
+                //this.setState({ user: userdata.loginUser});
+                //this.props.updateUserLoggedIn(userdata.loginUser);
                 //browserHistory.push('/home');
                 //this.props.history.push('/home')
                 window.location.href = '/home'

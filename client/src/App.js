@@ -165,24 +165,24 @@ class App extends Component {
         if (this.state.photosAfterFilter.length !== 0) {
             photoDisplayList = cloneDeep(this.state.photosAfterFilter);
         }
-        if (this.state.user === (0 || null) ){
+        /* if (this.state.user === (0 || null) ){
             return (
                 <div>
-                    <Route path='/' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
-                    <Route path='/home' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
-                    <Route path='/login' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
-                    <Route path='/browse' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
-                    <Route path='/about' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
-                    <Route path='/upload' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/' exact component={Login}/>
+                    <Route path='/home' exact component={Login}/>
+                    <Route path='/login' exact component={Login}/>
+                    <Route path='/browse' exact component={Login}/>
+                    <Route path='/about' exact component={Login}/>
+                    <Route path='/upload' exact component={Login}/>
                     <Alert stack={{limit: 1}}/>
                 </div>
             );
-        }else{
+        }else{ */
             return (
                 <div>
-                    <Route path='/' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/' exact component={Login}/>
                     <Route path='/home' exact component={Home}/>
-                    <Route path='/login' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/login' exact component={Login}/>
                     <Route path='/browse' exact
                         render={(props) =>
                             <PhotoBrowser
@@ -202,7 +202,7 @@ class App extends Component {
                     <Alert stack={{limit: 1}}/>
                 </div>
             );
-        }
+        
     }
 
 }
