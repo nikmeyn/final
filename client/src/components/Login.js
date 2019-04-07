@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 class Home extends React.Component{
@@ -44,17 +44,17 @@ class Home extends React.Component{
     async login() {
         console.log(this.state)
 
-        if (this.state.user.email && this.state.user.email != '' && this.state.user.password && this.state.user.password != '') {
+        if (this.state.user.email && this.state.user.email !== '' && this.state.user.password && this.state.user.password !== '') {
 
 
-            if (this.isChecked == true) {
+            if (this.isChecked === true) {
                 localStorage.setItem('user', JSON.stringify({ email: this.state.user.email, password: this.state.user.password}))
             }
 
             let response = await this.executeAPI();
             
             var userdata = JSON.parse(response)
-            if (userdata.success == true && userdata.token) {
+            if (userdata.success === true && userdata.token) {
                 localStorage.setItem('token', userdata.token)
                 //browserHistory.push('/home');
                 //this.props.history.push('/home')

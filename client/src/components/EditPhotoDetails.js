@@ -6,12 +6,13 @@ class EditPhotoDetails extends React.Component {
 	render() {
 		const id = this.props.currentPhoto;
 		const imgURL = `https://storage.googleapis.com/web3-assignment2-photos/photos/large/`;
+		const apimethod = `api/images/${id}`;
 				if (this.props.photos.length > 0 ) {
 					const photo = this.props.photos.find(p => p.id === id);
 				return(
 				 <article className="details">
 				  <div className="detailsPhotoBox">
-					<form className="photoForm">
+					<form method={apimethod} className="photoForm">
 					   <legend>Edit Photo Details</legend>
 					   <img src={imgURL+photo.filename} alt={photo.title} />
 					   
