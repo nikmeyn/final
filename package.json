@@ -1,6 +1,9 @@
 {
   "name": "asg2",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.1"
+  },
   "description": "Assignment 2",
   "main": "app.js",
   "scripts": {
