@@ -12,7 +12,8 @@ class EditPhotoDetails extends React.Component {
 				return(
 				 <article className="details">
 				  <div className="detailsPhotoBox">
-					<form method={apimethod} className="photoForm">
+					<form method="post" action={apimethod} className="photoForm">
+						<input type="hidden" name="_method" value="put" />
 					   <legend>Edit Photo Details</legend>
 					   <img src={imgURL+photo.filename} alt={photo.title} />
 					   
@@ -57,7 +58,7 @@ class EditPhotoDetails extends React.Component {
 
 					   <input type='hidden' name='_id' value={photo._id}/>
 
-					   <input type='submit' value='Save Change Permantly'/>
+					   <input type='submit' value='Save Changes Permantly'/>
 
 					</form>
 						<button onClick={this.handleViewClick}>View</button>
