@@ -158,11 +158,32 @@ app.post('/api/upload', multer.single('image'), imgUpload.uploadToGcs, function 
 	});
 	var upload = Multer({storage: storage}).single('avatar');
 	
-	app.post('/profile', function (req, res) {
+
+// Imports the Google Cloud client library
+const {Storage} = require('@google-cloud/storage');
+
+// Creates a client
+const gcStorage = new Storage();
+const bucketName = 'web3-assignment2-photos';
+
+app.post('/profile', function (req, res) {
 		upload(req, res, function(err, result){
-				console.log(req)
-					res.send({path : apiPath + "uploads/" + req.file.originalname})
-			})
+				//console.log(req);
+				console.log("uploading to upload folder");
+				//upload the file to the local path first
+				res.send({path : apiPath + "uploads/" + req.file.originalname})
+				const filename = './uploads/' + req.file.originalname;
+				const bucketDestination = 'photos/uploadTest/'+ req.file.originalname;
+				// Upload  local file to the bucket
+				gcStorage.bucket(bucketName).upload(filename, {
+					destination: bucketDestination,
+					gzip: true,
+					metadata: {
+						cacheControl: 'no-cache, max-age=31536000',
+					}
+				});
+				console.log(`${filename} uploaded to ${bucketName}.`);
+})
 	})
 
 	// app.get('*', (req, res) => {
