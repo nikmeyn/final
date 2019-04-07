@@ -26,9 +26,15 @@ class EditPhotoDetails extends React.Component {
 						<label>Location</label>
 					   <label>City</label>
 					   <input type='text' name='city' value={photo.location.city} onChange={this.handleChange}/>
+
+					   <label>City Code</label>
+					   <input type='text' name='cityCode' value={photo.location.cityCode} onChange={this.handleChange}/>
 					   
 					   <label>Country</label>
 					   <input type='text' name='country' value={photo.location.country}  onChange={this.handleChange}/>
+
+					   <label>ISO</label>
+					   <input type='text' name='iso' value={photo.location.iso}  onChange={this.handleChange}/>
 					   
 					   <label>Longitude</label>
 					   <input type='number' name='longitude' value={photo.location.longitude}  onChange={this.handleChange}/>
@@ -53,7 +59,7 @@ class EditPhotoDetails extends React.Component {
 					   <input type='number' name='focal_length' value={photo.exif.focal_length}  onChange={this.handleChange}/>
 					   
 					   <label>EXIF ISO</label>
-					   <input type='number' name='iso' value={photo.exif.iso}  onChange={this.handleChange}/>
+					   <input type='number' name='isox' value={photo.exif.iso}  onChange={this.handleChange}/>
 					   
 
 					   <input type='hidden' name='_id' value={photo._id}/>
