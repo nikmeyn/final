@@ -98,7 +98,7 @@ app.post('/api/images/:id', (req,resp) => {
 			if (err) {
 				return resp.status(500).send(err);
 			} else {
-				resp.send(data);
+				resp.redirect('/browse');
 			}
 		});
 	}
@@ -107,7 +107,7 @@ app.post('/api/images/:id', (req,resp) => {
 			if (err) {
 				return resp.status(500).send(err);
 			} else {
-				resp.send(data);
+				resp.redirect('/browse');
 			}
 		});
 	}
