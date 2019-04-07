@@ -57,11 +57,20 @@ class App extends Component {
         }
 
         photoToReplace.title = photo.title;
-        photoToReplace.city = photo.location.city;
-        photoToReplace.country = photo.location.country;
+        photoToReplace.location.iso = photo.location.iso;
+        photoToReplace.location.city = photo.location.city;
+        photoToReplace.location.country = photo.location.country;
         photoToReplace.description = photo.description;
-        photoToReplace.latitude = photo.location.latitude;
-        photoToReplace.longitude = photo.location.longitude;
+        photoToReplace.location.latitude = photo.location.latitude;
+        photoToReplace.location.longitude = photo.location.longitude;
+        photoToReplace.location.cityCode = photo.location.cityCode;
+        photoToReplace.location.continent = photo.location.continent;
+        photoToReplace.exif.make = photo.exif.make;
+        photoToReplace.exif.model = photo.exif.model;
+        photoToReplace.exif.exposure_time = photo.exif.exposure_time;
+        photoToReplace.exif.aperture = photo.exif.aperture;
+        photoToReplace.exif.focal_length = photo.exif.focal_length;
+        photoToReplace.exif.iso = photo.exif.iso;
 
         this.setState({
             photos: copyPhotos,
