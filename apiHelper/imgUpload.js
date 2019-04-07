@@ -4,14 +4,14 @@
 const {Storage} = require('@google-cloud/storage');
 const fs = require('fs')
 
-//Changes needed!
+
+
 const gcs = new Storage({
-  projectId: 'your-project-id',
-  keyFilename: '/path/to/keyfile.json'
+  projectId: 'web3-asg2',
+  keyFilename: '../keyfile.json'
 });
 
-//CHANGES NEEDED!
-const bucketName = 'bucket-name-for-upload'
+const bucketName = 'web3-assignment2-photos'
 const bucket = gcs.bucket(bucketName);
 
 
