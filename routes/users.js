@@ -4,6 +4,8 @@ var config = require(lib + '/config');
 var middleware = require(lib + '/middleware');
 var Users = require(lib + '/models/User');
 const MongoClient = require("mongodb").MongoClient;
+const bcrypt = require('bcryptjs');
+var userLoggedIn;
 
 //Login Page
 module.exports = function(app){
@@ -17,7 +19,7 @@ module.exports = function(app){
             throw error;
         }
         database = client.db(DATABASE_NAME);
-        collection = database.collection("User");
+        collection = database.collection("logins");
     });
 
 app.post('/login',  async function(req, res) {
@@ -31,18 +33,29 @@ app.post('/login',  async function(req, res) {
         let data = await collection.findOne({email : username});
         //let temp = await collection.insert({email: "btume3@ehow.com", password:"12345"})
         if(data){
-        if (username === data.email && password === data.password) {
-            let token = jwt.sign({username: username},
-                config.secret,
-                { expiresIn: '24h' // expires in 24 hours
-                }
-            );
-            // return the JWT token for the future API calls
-            res.json({
-                success: true,
-                message: 'Authentication successful!',
-                token: token
-            });
+        if (username === data.email) {
+
+            var compare = await bcrypt.compare(password, data.password_bcrypt);
+
+            if (compare){
+                
+                let token = jwt.sign({username: username},
+                    config.secret,
+                    { expiresIn: '24h' // expires in 24 hours
+                    }
+                );
+                // return the JWT token for the future API calls
+                res.json({
+                    success: true,
+                    message: 'Authentication successful!',
+                    token: token
+                });
+            }else{
+                res.status(403).json({
+                    success: false,
+                    message: 'Incorrect password'
+                });
+            }
         } else {
             res.status(403).json({
                 success: false,
