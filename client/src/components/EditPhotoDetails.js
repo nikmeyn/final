@@ -33,6 +33,15 @@ class EditPhotoDetails extends React.Component {
 					   <label>Latitude</label>
 					   <input type='number' name='latitude' value={photo.location.latitude}  onChange={this.handleChange}/>
 					   
+					   <input type='hidden' name='_id' value={photo._id}/>
+					   <input type='hidden' name='user' value={photo.user}/>
+					   <input type='hidden' name='exif' value={photo.exif}/>
+					   <input type='hidden' name='colors' value={photo.colors}/>
+					   <input type='hidden' name='filename' value={photo.filename}/>
+
+
+					   <input type='submit' value='Save Change Permantly'/>
+
 					</form>
 						<button onClick={this.handleViewClick}>View</button>
 					   <button onClick={this.handleMapClick}>Map</button>
