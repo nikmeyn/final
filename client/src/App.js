@@ -20,7 +20,7 @@ class App extends Component {
             favoritePhotosLocalStorage = JSON.parse(localStorage.getItem('favoritePhotosLocalStorage'));
         else
             favoritePhotosLocalStorage = [];
-        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: []};
+        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: [], user: null};
         this.connecToServer = this.connecToServer.bind(this);
     }
 
@@ -154,36 +154,54 @@ class App extends Component {
         console.log("photosAfterFilter cleared");
     }
 
+    updateUserLoggedIn = (id) => {
+        this.setState({user: id});
+        console.log("logged in user id updated");
+    }
 
     render() {
         let photoDisplayList = cloneDeep(this.state.photos);
         if (this.state.photosAfterFilter.length !== 0) {
             photoDisplayList = cloneDeep(this.state.photosAfterFilter);
         }
-        return (
-            <div>
-                <Route path='/' exact component={Login}/>
-                <Route path='/home' exact component={Home}/>
-                <Route path='/login' exact component={Login}/>
-                <Route path='/browse' exact
-                       render={(props) =>
-                           <PhotoBrowser
-                               photos={photoDisplayList}
-                               photosDropdownData={this.state.photos}
-                               updatePhoto={this.updatePhoto}
-                               updateFavorites={this.updateFavorites}
-                               favoritePhotos={this.state.favoritePhotos}
-                               filterPhotos={this.filterPhotos}
-                               deletePhoto={this.deletePhoto}
-                               deletePhotoFromFavorites={this.deletePhotoFromFavorites}
-                               clearPhotosAfterFilter={this.clearPhotosAfterFilter}/>}
-                />
-                <Route path='/about' exact component={About} />
-                <Route path='/upload' exact component={UploadImage} />
-               
-                <Alert stack={{limit: 1}}/>
-            </div>
-        );
+        if (this.state.user === (0 || null) ){
+            return (
+                <div>
+                    <Route path='/' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/home' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/login' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/browse' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/about' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/upload' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Alert stack={{limit: 1}}/>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <Route path='/' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/home' exact component={Home}/>
+                    <Route path='/login' exact render={(props) => <Login updateUserLoggedIn={this.updateUserLoggedIn}/>} />
+                    <Route path='/browse' exact
+                        render={(props) =>
+                            <PhotoBrowser
+                                photos={photoDisplayList}
+                                photosDropdownData={this.state.photos}
+                                updatePhoto={this.updatePhoto}
+                                updateFavorites={this.updateFavorites}
+                                favoritePhotos={this.state.favoritePhotos}
+                                filterPhotos={this.filterPhotos}
+                                deletePhoto={this.deletePhoto}
+                                deletePhotoFromFavorites={this.deletePhotoFromFavorites}
+                                clearPhotosAfterFilter={this.clearPhotosAfterFilter}/>}
+                    />
+                    <Route path='/about' exact component={About} />
+                    <Route path='/upload' exact component={UploadImage} />
+                
+                    <Alert stack={{limit: 1}}/>
+                </div>
+            );
+        }
     }
 
 }
