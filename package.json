@@ -4,10 +4,11 @@
   "description": "Assignment 2",
   "main": "app.js",
   "scripts": {
-    "node-app": "node app.js",
-    "react-app": "npm start --prefix ./client",
-    "start": "npm-run-all node-app react-app",
-    "dev": "nodemon app.js"
+    "client-install": "npm install --prefix client",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Nik, James, John, Gio",
   "license": "ISC",
