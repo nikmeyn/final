@@ -12,7 +12,8 @@ class EditPhotoDetails extends React.Component {
 				return(
 				 <article className="details">
 				  <div className="detailsPhotoBox">
-					<form method={apimethod} className="photoForm">
+					<form method="post" action={apimethod} className="photoForm">
+						<input type="hidden" name="_method" value="put" />
 					   <legend>Edit Photo Details</legend>
 					   <img src={imgURL+photo.filename} alt={photo.title} />
 					   
@@ -25,9 +26,15 @@ class EditPhotoDetails extends React.Component {
 						<label>Location</label>
 					   <label>City</label>
 					   <input type='text' name='city' value={photo.location.city} onChange={this.handleChange}/>
+
+					   <label>City Code</label>
+					   <input type='text' name='cityCode' value={photo.location.cityCode} onChange={this.handleChange}/>
 					   
 					   <label>Country</label>
 					   <input type='text' name='country' value={photo.location.country}  onChange={this.handleChange}/>
+
+					   <label>ISO</label>
+					   <input type='text' name='iso' value={photo.location.iso}  onChange={this.handleChange}/>
 					   
 					   <label>Longitude</label>
 					   <input type='number' name='longitude' value={photo.location.longitude}  onChange={this.handleChange}/>
@@ -52,12 +59,12 @@ class EditPhotoDetails extends React.Component {
 					   <input type='number' name='focal_length' value={photo.exif.focal_length}  onChange={this.handleChange}/>
 					   
 					   <label>EXIF ISO</label>
-					   <input type='number' name='iso' value={photo.exif.iso}  onChange={this.handleChange}/>
+					   <input type='number' name='isox' value={photo.exif.iso}  onChange={this.handleChange}/>
 					   
 
 					   <input type='hidden' name='_id' value={photo._id}/>
 
-					   <input type='submit' value='Save Change Permantly'/>
+					   <input type='submit' value='Save Changes Permantly'/>
 
 					</form>
 						<button onClick={this.handleViewClick}>View</button>

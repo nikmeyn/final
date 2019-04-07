@@ -20,7 +20,7 @@ class App extends Component {
             favoritePhotosLocalStorage = JSON.parse(localStorage.getItem('favoritePhotosLocalStorage'));
         else
             favoritePhotosLocalStorage = [];
-        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: []};
+        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: [], user: null};
         this.connecToServer = this.connecToServer.bind(this);
     }
 
@@ -57,20 +57,21 @@ class App extends Component {
         }
 
         photoToReplace.title = photo.title;
-        photoToReplace.location.iso = photo.location.iso;
-        photoToReplace.location.city = photo.location.city;
-        photoToReplace.location.country = photo.location.country;
+        photoToReplace.location.iso = photo.iso;
+        photoToReplace.location.city = photo.city;
+        photoToReplace.location.city = photo.cityCode;
+        photoToReplace.location.country = photo.country;
         photoToReplace.description = photo.description;
-        photoToReplace.location.latitude = photo.location.latitude;
-        photoToReplace.location.longitude = photo.location.longitude;
-        photoToReplace.location.cityCode = photo.location.cityCode;
-        photoToReplace.location.continent = photo.location.continent;
-        photoToReplace.exif.make = photo.exif.make;
-        photoToReplace.exif.model = photo.exif.model;
-        photoToReplace.exif.exposure_time = photo.exif.exposure_time;
-        photoToReplace.exif.aperture = photo.exif.aperture;
-        photoToReplace.exif.focal_length = photo.exif.focal_length;
-        photoToReplace.exif.iso = photo.exif.iso;
+        photoToReplace.location.latitude = photo.latitude;
+        photoToReplace.location.longitude = photo.longitude;
+        photoToReplace.location.cityCode = photo.cityCode;
+        photoToReplace.location.continent = photo.continent;
+        photoToReplace.exif.make = photo.make;
+        photoToReplace.exif.model = photo.model;
+        photoToReplace.exif.exposure_time = photo.exposure_time;
+        photoToReplace.exif.aperture = photo.aperture;
+        photoToReplace.exif.focal_length = photo.focal_length;
+        photoToReplace.exif.iso = photo.isox;
 
         this.setState({
             photos: copyPhotos,
@@ -154,36 +155,54 @@ class App extends Component {
         console.log("photosAfterFilter cleared");
     }
 
+    updateUserLoggedIn = (id) => {
+        this.setState({user: id});
+        console.log("logged in user id updated");
+    }
 
     render() {
         let photoDisplayList = cloneDeep(this.state.photos);
         if (this.state.photosAfterFilter.length !== 0) {
             photoDisplayList = cloneDeep(this.state.photosAfterFilter);
         }
-        return (
-            <div>
-                <Route path='/' exact component={Login}/>
-                <Route path='/home' exact component={Home}/>
-                <Route path='/login' exact component={Login}/>
-                <Route path='/browse' exact
-                       render={(props) =>
-                           <PhotoBrowser
-                               photos={photoDisplayList}
-                               photosDropdownData={this.state.photos}
-                               updatePhoto={this.updatePhoto}
-                               updateFavorites={this.updateFavorites}
-                               favoritePhotos={this.state.favoritePhotos}
-                               filterPhotos={this.filterPhotos}
-                               deletePhoto={this.deletePhoto}
-                               deletePhotoFromFavorites={this.deletePhotoFromFavorites}
-                               clearPhotosAfterFilter={this.clearPhotosAfterFilter}/>}
-                />
-                <Route path='/about' exact component={About} />
-                <Route path='/upload' exact component={UploadImage} />
-               
-                <Alert stack={{limit: 1}}/>
-            </div>
-        );
+        /* if (this.state.user === (0 || null) ){
+            return (
+                <div>
+                    <Route path='/' exact component={Login}/>
+                    <Route path='/home' exact component={Login}/>
+                    <Route path='/login' exact component={Login}/>
+                    <Route path='/browse' exact component={Login}/>
+                    <Route path='/about' exact component={Login}/>
+                    <Route path='/upload' exact component={Login}/>
+                    <Alert stack={{limit: 1}}/>
+                </div>
+            );
+        }else{ */
+            return (
+                <div>
+                    <Route path='/' exact component={Login}/>
+                    <Route path='/home' exact component={Home}/>
+                    <Route path='/login' exact component={Login}/>
+                    <Route path='/browse' exact
+                        render={(props) =>
+                            <PhotoBrowser
+                                photos={photoDisplayList}
+                                photosDropdownData={this.state.photos}
+                                updatePhoto={this.updatePhoto}
+                                updateFavorites={this.updateFavorites}
+                                favoritePhotos={this.state.favoritePhotos}
+                                filterPhotos={this.filterPhotos}
+                                deletePhoto={this.deletePhoto}
+                                deletePhotoFromFavorites={this.deletePhotoFromFavorites}
+                                clearPhotosAfterFilter={this.clearPhotosAfterFilter}/>}
+                    />
+                    <Route path='/about' exact component={About} />
+                    <Route path='/upload' exact component={UploadImage} />
+                
+                    <Alert stack={{limit: 1}}/>
+                </div>
+            );
+        
     }
 
 }

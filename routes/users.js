@@ -5,7 +5,6 @@ var middleware = require(lib + '/middleware');
 var Users = require(lib + '/models/User');
 const MongoClient = require("mongodb").MongoClient;
 const bcrypt = require('bcryptjs');
-var userLoggedIn;
 
 //Login Page
 module.exports = function(app){
@@ -39,6 +38,8 @@ app.post('/login',  async function(req, res) {
 
             if (compare){
                 
+                var userLoggedIn = data.id;
+
                 let token = jwt.sign({username: username},
                     config.secret,
                     { expiresIn: '24h' // expires in 24 hours
@@ -48,7 +49,8 @@ app.post('/login',  async function(req, res) {
                 res.json({
                     success: true,
                     message: 'Authentication successful!',
-                    token: token
+                    token: token,
+                    loginUser : userLoggedIn
                 });
             }else{
                 res.status(403).json({

@@ -3,7 +3,7 @@ import './Home.css';
 //import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-class Home extends React.Component{
+class Login extends React.Component{
 
     constructor(props) {
         super(props);
@@ -55,10 +55,13 @@ class Home extends React.Component{
             
             var userdata = JSON.parse(response)
             if (userdata.success === true && userdata.token) {
-                localStorage.setItem('token', userdata.token)
+                localStorage.setItem('token', userdata.token);
+
+                //this.setState({ user: userdata.loginUser});
+                //this.props.updateUserLoggedIn(userdata.loginUser);
                 //browserHistory.push('/home');
                 //this.props.history.push('/home')
-                window.location.href = '/browse'
+                window.location.href = '/home'
             } else {
                 alert(userdata.message)
             }
@@ -111,4 +114,4 @@ class Home extends React.Component{
 
 
 }
-export default Home;
+export default Login;
