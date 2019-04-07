@@ -59,6 +59,7 @@ class App extends Component {
         photoToReplace.title = photo.title;
         photoToReplace.location.iso = photo.iso;
         photoToReplace.location.city = photo.city;
+        photoToReplace.location.city = photo.cityCode;
         photoToReplace.location.country = photo.country;
         photoToReplace.description = photo.description;
         photoToReplace.location.latitude = photo.latitude;
