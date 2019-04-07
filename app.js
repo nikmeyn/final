@@ -173,7 +173,7 @@ app.post('/profile', function (req, res) {
 				//upload the file to the local path first
 				res.send({path : apiPath + "uploads/" + req.file.originalname})
 				const filename = './uploads/' + req.file.originalname;
-				const bucketDestination = 'photos/uploadTest/'+ req.file.originalname;
+				const bucketDestination = 'photos/large/'+ req.file.originalname;
 				// Upload  local file to the bucket
 				gcStorage.bucket(bucketName).upload(filename, {
 					destination: bucketDestination,
