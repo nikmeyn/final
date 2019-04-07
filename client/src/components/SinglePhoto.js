@@ -21,13 +21,13 @@ class SinglePhoto extends React.Component{
 							<h2>Taken By: {photo.user.firstname} {photo.user.lastname}</h2>
 							
 							{/* add check if user logged in current user */}
-							<h2>EXIF</h2>
-							<h2>make: {photo.exif.make}</h2>
-							<h2>model: {photo.exif.model}</h2>
-							<h2>exposure: {photo.exif.exposure_time}</h2>
-							<h2>aperture: {photo.exif.aperture}</h2>
-							<h2>focal_length: {photo.exif.focal_length}</h2>
-							<h2>iso: {photo.exif.iso}</h2>
+							<h2>EXIF Information</h2>
+							<h2>Make: {photo.exif.make}</h2>
+							<h2>Model: {photo.exif.model}</h2>
+							<h2>Exposure: {photo.exif.exposure_time}</h2>
+							<h2>Aperture: {photo.exif.aperture}</h2>
+							<h2>Focal Length: {photo.exif.focal_length}</h2>
+							<h2>EXIF Iso: {photo.exif.iso}</h2>
 
 							<button onClick={this.handleEditClick}>Edit</button>
 							<button onClick={this.handleMapClick}>Map</button>

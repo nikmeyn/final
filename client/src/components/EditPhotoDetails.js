@@ -18,13 +18,11 @@ class EditPhotoDetails extends React.Component {
 					   
 					   <label>Title</label>
 					   <input type='text' name='title' value={photo.title}  onChange={this.handleChange} />
-
-					   <label>ID</label>
-					   <input type='text' name='id' value={photo.id}  onChange={this.handleChange} />
 					      
 					   <label>Description</label>
 					   <input type='text' name='description' value={photo.description}  onChange={this.handleChange} />
 						
+						<label>Location</label>
 					   <label>City</label>
 					   <input type='text' name='city' value={photo.location.city} onChange={this.handleChange}/>
 					   
@@ -37,12 +35,27 @@ class EditPhotoDetails extends React.Component {
 					   <label>Latitude</label>
 					   <input type='number' name='latitude' value={photo.location.latitude}  onChange={this.handleChange}/>
 					   
-					   <input type='hidden' name='_id' value={photo._id}/>
-					   <input type='hidden' name='user' value={photo.user}/>
-					   <input type='hidden' name='exif' value={photo.exif}/>
-					   <input type='hidden' name='colors' value={photo.colors}/>
-					   <input type='hidden' name='filename' value={photo.filename}/>
+						<label>EXIF Information</label>
+						<label>Make</label>
+					   <input type='number' name='make' value={photo.exif.make}  onChange={this.handleChange}/>
+					   
+					   <label>Model</label>
+					   <input type='number' name='model' value={photo.exif.model}  onChange={this.handleChange}/>
+					   
+					   <label>Exposure Time</label>
+					   <input type='number' name='exposure_time' value={photo.exif.exposure_time}  onChange={this.handleChange}/>
+					   
+					   <label>Aperture</label>
+					   <input type='number' name='aperture' value={photo.exif.aperture}  onChange={this.handleChange}/>
+					   
+					   <label>Focal Length</label>
+					   <input type='number' name='focal_length' value={photo.exif.focal_length}  onChange={this.handleChange}/>
+					   
+					   <label>EXIF ISO</label>
+					   <input type='number' name='iso' value={photo.exif.iso}  onChange={this.handleChange}/>
+					   
 
+					   <input type='hidden' name='_id' value={photo._id}/>
 
 					   <input type='submit' value='Save Change Permantly'/>
 
