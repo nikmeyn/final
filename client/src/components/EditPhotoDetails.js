@@ -17,6 +17,9 @@ class EditPhotoDetails extends React.Component {
 					   
 					   <label>Title</label>
 					   <input type='text' name='title' value={photo.title}  onChange={this.handleChange} />
+
+					   <label>ID</label>
+					   <input type='text' name='id' value={photo.id}  onChange={this.handleChange} />
 					      
 					   <label>Description</label>
 					   <input type='text' name='description' value={photo.description}  onChange={this.handleChange} />
