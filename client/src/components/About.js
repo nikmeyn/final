@@ -12,7 +12,7 @@ class About extends React.Component{
 				<HeaderApp pageTitle="About"/>
 				
 				<div className="aboutPageInfo">
-				<p> This website is created by Gio Moros, James Stewart, John Hernandez, and Nik Meyn for my COMP 4513 class<br></br>
+				<p> This website is created by Gio Moros, James Stewart, John Hernandez, and Nik Meyn for our  COMP 4513 class<br></br>
 				Some of the major modules used in developing this website were:</p>
 				<ul>
 				<li><a href="https://www.npmjs.com/package/helmet"> Helmet </a></li>
@@ -23,9 +23,9 @@ class About extends React.Component{
 				<li><a href="https://stuk.github.io/jszip/"> Jszip </a></li>
 				<li><a href="http://react-s-alert.jsdemo.be/"> react-s-alert </a></li>
                 <li><a href="https://www.npmjs.com/package/bcryptjs"> BCrypt </a></li>
-                <li><a href="https://www.npmjs.com/package/multer"/>Multer</li>
-                <li><a href="https://www.npmjs.com/package/passport" />Passport</li>
-                <li><a href="https://www.npmjs.com/package/lodash" />lodash</li>
+                <li><a href="https://www.npmjs.com/package/multer">Multer</a></li>
+                <li><a href="https://www.npmjs.com/package/passport">Passport</a></li>
+                <li><a href="https://www.npmjs.com/package/lodash">lodash</a></li>
 				</ul>
 				
 				<p>The images on this website were retrieve from: <br></br></p>
