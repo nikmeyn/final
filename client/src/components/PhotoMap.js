@@ -20,6 +20,7 @@ class PhotoMap extends React.Component{
     
 	render() {
 		if (this.props.photos.length > 0 ) {
+			let editDets;
 			const id = this.props.currentPhoto;
 			const imgURL = `https://storage.googleapis.com/web3-assignment2-photos/photos/square/`;
 			let haversineRounded = -1; //flag
@@ -38,6 +39,12 @@ class PhotoMap extends React.Component{
 				{
 					haversineDiv = <div className='haversineSmallDiv'><p>Your distance from {photo.title} in a <strong>straight line</strong> (via haversnine equation) </p><h2> {haversineRounded} <strong>KM</strong></h2></div>;
 				}
+				if(photo.user.userid === this.props.userID){
+					editDets = <button onClick={this.handleEditClick}>Edit</button>
+				}
+				else{
+					editDets = <button style={{backgroundColor: "#808080"}}>Edit</button>
+				}
 				return(
 				 <article className="detailsMap">
 				  <div className="detailsPhotoMapBox">
@@ -47,7 +54,7 @@ class PhotoMap extends React.Component{
 							<h2>{photo.title}</h2>
 							<h2>{photo.location.city},{photo.location.country}</h2>
 							<button onClick={this.handleViewClick}>View</button>
-							<button onClick={this.handleEditClick}>Edit</button>
+							{editDets}
 						</div>
 						{haversineDiv}
 					</div>
