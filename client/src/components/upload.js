@@ -3,6 +3,7 @@ import '../App.css';
 import './upload.css';
 import HeaderApp from './HeaderApp.js';
 import { Helmet } from 'react-helmet';
+import catImg from './Computer-Cat.jpg';
 const randomStr = require("randomstring");
 
 class UploadImage extends React.Component {
@@ -43,16 +44,6 @@ class UploadImage extends React.Component {
             var formData = new FormData();
             formData.append("avatar", file, file.name);
 
-            //let uploadedRes = await fetch('/', {
-            //    method: 'POST',
-            //    body: formData
-            //}).then(response => response.json())
-
-            //this.setState({
-            //    uploadInProgress: false
-            //})
-
-            //return uploadedRes.path;
             var xhr = new XMLHttpRequest();
             xhr.open("POST", apiUrl, true);
 
@@ -170,6 +161,7 @@ class UploadImage extends React.Component {
                         </div>
                     <input type="button" className="cloudButton" onClick = {this.createNewImage.bind(this)} value="Upload Into the Clouds!" />
             </article> 
+            <img className="catImageDiv" src={catImg} alt="catImage"/>
             </div>
     </div>
         );

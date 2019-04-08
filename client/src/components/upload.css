@@ -7,7 +7,11 @@
     align-items: center;
   }
 
-
+.catImageDiv{
+    width: 45%;
+    height: 69%;
+    margin-left: 3em;
+}
   .cloudButton {
     background: var(--button-back);
     border: 0;
@@ -19,6 +23,9 @@
     font-weight: bolder;
 }
 
+.details{
+    width: 45%;
+}
 
 .detailsPhotoBox {
     display: grid;
