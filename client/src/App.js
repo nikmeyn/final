@@ -21,24 +21,21 @@ class App extends Component {
         else
             favoritePhotosLocalStorage = [];
         this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: [], user: null};
-        this.connecToServer = this.connecToServer.bind(this);
+        this.connectToServer = this.connectToServer.bind(this);
     }
 
-    connecToServer() {
+    connectToServer() {
         fetch('/');
     }
 
     async componentDidMount() {
         try {
-            //const url = "https://randyconnolly.com/funwebdev/services/travel/images.php";
             const url = "api/images";
             const response = await fetch(url);
-            //console.log("response=>" + response);
             const jsonData = await response.json();
-           // console.log("fetched data line 25 app.js \n" + jsonData);
             this.setState({photos: jsonData});
             document.title = "Assignment 2";
-            this.connecToServer();
+            this.connectToServer();
         } catch (error) {
             console.error(error);
         }
