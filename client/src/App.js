@@ -187,8 +187,7 @@ class App extends Component {
                         clearPhotosAfterFilter={this.clearPhotosAfterFilter}/> ) : <Login authorizeUser={this.authorizeUser}/>)}
                     />
                     <Route path='/about' exact render={() => (authorizedUser? <About/> : <Login authorizeUser={this.authorizeUser}/>)} />
-                    <Route path='/upload' exact render={() => (authorizedUser? <UploadImage/> : <Login authorizeUser={this.authorizeUser}/>)} />
-                
+                    <Route path='/upload' exact render={() => (authorizedUser? <UploadImage userObj={this.state.userObj}/> : <Login authorizeUser={this.authorizeUser}/>)} />
                     <Alert stack={{limit: 1}}/>
                 </div>
             );
