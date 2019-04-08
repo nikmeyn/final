@@ -14,6 +14,8 @@ const multer = Multer({
   fileSize: 5 * 1024 * 1024
 });
 
+console.log("We are in node app.js");
+
 const CONNECTION_URL = "mongodb+srv://admin-1:passwordadmin-1@web3-asg2-rk0iv.mongodb.net/test?retryWrites=true";
 const DATABASE_NAME = "mytravels";
 
