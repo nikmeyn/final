@@ -59,17 +59,3 @@ class About extends React.Component{
 }
 
 export default About;
-class About extends React.Component {
-    render() {
-        return (
-            <div className="aboutPage">
-                <Helmet title="About"/>
-                <HeaderApp pageTitle="About"/>
-                <div className="aboutPageInfo">
-                </div>
-            </div>
-        );
-    }
-}
-
-export default About;
