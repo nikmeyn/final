@@ -42,7 +42,7 @@ require('./routes/users')(app)
 
 
 
-var database, collection, demoCollection;
+var database, collection;
 app.use('/uploads', serveStatic(__dirname + '/uploads'));
 
 app.listen(8080, () => {
@@ -52,7 +52,6 @@ app.listen(8080, () => {
       }
       database = client.db(DATABASE_NAME);
 			collection = database.collection("images");
-			demoCollection =  database.collection("demo");
       console.log("Connected to `" + DATABASE_NAME + "`!");
   });
 });
