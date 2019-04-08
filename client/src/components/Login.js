@@ -61,7 +61,8 @@ class Login extends React.Component{
                 //this.props.updateUserLoggedIn(userdata.loginUser);
                 //browserHistory.push('/home');
                 //this.props.history.push('/home')
-                window.location.href = '/home'
+                console.log(userdata);
+                this.props.authorizeUser();
             } else {
                 alert(userdata.message)
             }

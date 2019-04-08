@@ -20,7 +20,7 @@ class App extends Component {
             favoritePhotosLocalStorage = JSON.parse(localStorage.getItem('favoritePhotosLocalStorage'));
         else
             favoritePhotosLocalStorage = [];
-        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: [], user: null};
+        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: [], user: null, userIsLoggedIn: false};
         this.connectToServer = this.connectToServer.bind(this);
     }
 
@@ -157,32 +157,24 @@ class App extends Component {
         console.log("logged in user id updated");
     }
 
+    authorizeUser = () =>{
+        this.setState({userIsLoggedIn : true});
+    }
+
     render() {
         let photoDisplayList = cloneDeep(this.state.photos);
+        let authorizedUser = this.state.userIsLoggedIn;
         if (this.state.photosAfterFilter.length !== 0) {
             photoDisplayList = cloneDeep(this.state.photosAfterFilter);
         }
-        /* if (this.state.user === (0 || null) ){
             return (
                 <div>
-                    <Route path='/' exact component={Login}/>
-                    <Route path='/home' exact component={Login}/>
-                    <Route path='/login' exact component={Login}/>
-                    <Route path='/browse' exact component={Login}/>
-                    <Route path='/about' exact component={Login}/>
-                    <Route path='/upload' exact component={Login}/>
-                    <Alert stack={{limit: 1}}/>
-                </div>
-            );
-        }else{ */
-            return (
-                <div>
-                    <Route path='/' exact component={Login}/>
+                    <Route path='/'exact render={() => (authorizedUser? <Home/> : <Login authorizeUser={this.authorizeUser}/>)} />
                     <Route path='/home' exact component={Home}/>
                     <Route path='/login' exact component={Login}/>
                     <Route path='/browse' exact
-                        render={(props) =>
-                            <PhotoBrowser
+                        render={(props) => ( authorizedUser ?
+                            (<PhotoBrowser
                                 photos={photoDisplayList}
                                 photosDropdownData={this.state.photos}
                                 updatePhoto={this.updatePhoto}
@@ -191,10 +183,10 @@ class App extends Component {
                                 filterPhotos={this.filterPhotos}
                                 deletePhoto={this.deletePhoto}
                                 deletePhotoFromFavorites={this.deletePhotoFromFavorites}
-                                clearPhotosAfterFilter={this.clearPhotosAfterFilter}/>}
+                        clearPhotosAfterFilter={this.clearPhotosAfterFilter}/> ) : <Login authorizeUser={this.authorizeUser}/>)}
                     />
-                    <Route path='/about' exact component={About} />
-                    <Route path='/upload' exact component={UploadImage} />
+                    <Route path='/about' exact render={() => (authorizedUser? <About/> : <Login authorizeUser={this.authorizeUser}/>)} />
+                    <Route path='/upload' exact render={() => (authorizedUser? <UploadImage/> : <Login authorizeUser={this.authorizeUser}/>)} />
                 
                     <Alert stack={{limit: 1}}/>
                 </div>

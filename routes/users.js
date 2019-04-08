@@ -22,6 +22,7 @@ module.exports = function(app){
     });
 
 app.post('/login',  async function(req, res) {
+    console.log("we are currently in routes/users.js");
     let username = req.body.username;
     let password = req.body.password;
     // For the given username fetch user from DB
