@@ -45,7 +45,7 @@ require('./routes/users')(app)
 var database, collection;
 app.use('/uploads', serveStatic(__dirname + '/uploads'));
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
       if(error) {
           throw error;

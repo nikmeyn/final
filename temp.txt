@@ -1,71 +1,64 @@
 const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const flash = require('connect-flash');
-const session = require('express-session');
-const passport = require('passport');
-const PORT = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
+let jwt = require('jsonwebtoken');
+let config = require('./config');
+let middleware = require('./middleware');
 
-const app = express();
+class HandlerGenerator {
+    login (req, res) {
+        let username = req.body.username;
+        let password = req.body.password;
+        // For the given username fetch user from DB
+        let mockedUsername = 'admin';
+        let mockedPassword = 'password';
 
-// Passport Config
-require('./config/passport')(passport);
+        if (username && password) {
+            if (username === mockedUsername && password === mockedPassword) {
+                let token = jwt.sign({username: username},
+                    config.secret,
+                    { expiresIn: '24h' // expires in 24 hours
+                    }
+                );
+                // return the JWT token for the future API calls
+                res.json({
+                    success: true,
+                    message: 'Authentication successful!',
+                    token: token
+                });
+            } else {
+                res.send(403).json({
+                    success: false,
+                    message: 'Incorrect username or password'
+                });
+            }
+        } else {
+            res.send(400).json({
+                success: false,
+                message: 'Authentication failed! Please check the request'
+            });
+        }
+    }
+    index (req, res) {
+        res.json({
+            success: true,
+            message: 'Index page'
+        });
+    }
+}
 
-// DB Config
-const db = require('./config/keys').MongoURI;
+// Starting point of the server
+function main () {
+    let app = express(); // Export app for other routes to use
+    let handlers = new HandlerGenerator();
+    const port = process.env.PORT || 8000;
+    app.use(bodyParser.urlencoded({ // Middleware
+        extended: true
+    }));
+    app.use(bodyParser.json());
+    // Routes & Handlers
+    app.post('/home', handlers.login);
+    app.get('/', middleware.checkToken, handlers.index);
+    app.listen(port, () => console.log(`Server is listening on port: ${port}`));
+}
 
-// Connect to MongoDB
-mongoose
-	.connect(
-		db, {
-			useNewUrlParser: true
-		}
-	)
-	.then(() => console.log('MongoDB Connected...'))
-	.catch(err => console.log(err));
-
-// EJS
-app.use(expressLayouts);
-app.set('view engine', 'ejs');
-
-
-app.use(express.static('public'));
-app.use('/static', express.static('public'));
-
-app.use(parser.json());
-app.use(parser.urlencoded({extended: true}));
-
-//Body parser
-app.use(express.urlencoded({
-	extended: false
-}));
-
-//express session
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-
-//passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
-//connect flash
-app.use(flash());
-
-//global variables
-app.use((req, resp, next) => {
-	resp.locals.succes_msg = req.flash('success_msg');
-	resp.locals.error_msg = req.flash('error_msg');
-	resp.locals.error = req.flash('error');
-	next();
-});
-
-
-//Routes
-app.use('/', require('./client/src/App'));
-app.use('/users', require('./routes/users'));
-
-app.listen(PORT, console.log(`Node Server Started on port ${PORT}`));
+main();
