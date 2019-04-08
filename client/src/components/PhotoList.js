@@ -48,6 +48,7 @@ render(){
 				</form>
 					{
 					this.props.photos.map( (p)=> <PhotoThumb 
+					userID = {this.props.userID}
 					photo={p} 
 					key={p.id} 
 					showImageDetails={this.props.showImageDetails}

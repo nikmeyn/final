@@ -31,11 +31,11 @@ static getDerivedStateFromProps(nextProps, prevState){
 render(){		
 			let photoDetails;
 			if(this.state.viewSinglePhoto)
-				photoDetails = <SinglePhoto photos={this.props.photos} currentPhoto={this.state.currentPhoto} changeToEditPhotoView={this.changeToEditPhotoView} changeToMapView={this.changeToMapView}/>
+				photoDetails = <SinglePhoto photos={this.props.photos} userID = {this.props.userID} currentPhoto={this.state.currentPhoto} changeToEditPhotoView={this.changeToEditPhotoView} changeToMapView={this.changeToMapView}/>
 			else if(this.state.viewEditPhoto){
 				photoDetails = <EditPhotoDetails userObj={this.props.userObj} photos={this.props.photos} currentPhoto={this.state.currentPhoto} updatePhoto={this.props.updatePhoto} changeToPhotoView={this.changeToPhotoView} changeToMapView={this.changeToMapView}/>
 			}else if(this.state.viewMap)
-				photoDetails = <PhotoMap getUserPosition={this.getUserPosition} photos={this.props.photos} currentPhoto={this.state.currentPhoto} changeToPhotoView={this.changeToPhotoView} changeToEditPhotoView={this.changeToEditPhotoView}/>
+				photoDetails = <PhotoMap getUserPosition={this.getUserPosition} photos={this.props.photos} userID = {this.props.userID} currentPhoto={this.state.currentPhoto} changeToPhotoView={this.changeToPhotoView} changeToEditPhotoView={this.changeToEditPhotoView}/>
 	return(
 	<div>
 	<HeaderApp pageTitle="Browse" />
@@ -51,7 +51,9 @@ render(){
 				   deletePhoto={this.props.deletePhoto}
 				   clearPhotosAfterFilter={this.props.clearPhotosAfterFilter}
 				   changeToEditPhotoView={this.changeToEditPhotoView} 
-				   changeToMapView={this.changeToMapView}/>
+				   changeToMapView={this.changeToMapView}
+				   userID = {this.props.userID}
+				   />
 		{photoDetails}
 	</section>
 	</div>

@@ -175,7 +175,7 @@ class App extends Component {
                     <Route path='/browse' exact
                         render={(props) => ( authorizedUser ?
                             (<PhotoBrowser
-                                userObj={this.state.userObj}
+                                userID={this.state.userObj.id}
                                 photos={photoDisplayList}
                                 photosDropdownData={this.state.photos}
                                 updatePhoto={this.updatePhoto}

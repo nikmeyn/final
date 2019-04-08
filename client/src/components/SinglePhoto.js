@@ -3,10 +3,17 @@ import './EditPhotoDetails.css';
 
 class SinglePhoto extends React.Component{
 	render() {
+		let editDetails;
 		const id = this.props.currentPhoto;
 		const imgURL = `https://storage.googleapis.com/web3-assignment2-photos/photos/large/`;
 		if (this.props.photos.length > 0 ) {
 			const photo = this.props.photos.find(p => p.id === id);
+		if( photo.user.userid === this.props.userID){
+			editDetails = <button onClick={this.handleEditClick}>Edit</button>
+		}
+		else{
+			editDetails = <button style={{backgroundColor: "#808080"}}>Edit</button>
+		}
 			return(
 				<article className="details">
 					<div className="detailsPhotoBox">
@@ -29,7 +36,7 @@ class SinglePhoto extends React.Component{
 							<h2>Focal Length: {photo.exif.focal_length}</h2>
 							<h2>EXIF Iso: {photo.exif.iso}</h2>
 
-							<button onClick={this.handleEditClick}>Edit</button>
+							{editDetails}
 							<button onClick={this.handleMapClick}>Map</button>
 
 
