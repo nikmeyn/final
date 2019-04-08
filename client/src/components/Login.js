@@ -54,7 +54,7 @@ class Login extends React.Component{
 
             let response = await this.executeAPI();
             
-            var userdata = JSON.parse(response)
+            var userdata = JSON.parse(response);
             if (userdata.success === true && userdata.token) {
                 localStorage.setItem('token', userdata.token);
 
