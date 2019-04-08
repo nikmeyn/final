@@ -52,6 +52,7 @@ app.listen(8080, () => {
       }
       database = client.db(DATABASE_NAME);
 			collection = database.collection("images");
+			dblogins = database.collection("logins");
       console.log("Connected to `" + DATABASE_NAME + "`!");
   });
 });
@@ -85,6 +86,24 @@ app.get("/api/images", (request, response) => {
       response.send(result);
   });
 });
+
+app.get("/api/:api/images/", (request, response) => {
+	dblogins.find({ apikey: request.params.api}, (err, data) => {
+		if(err){
+			return response.status(500).send(err);
+		} else{
+			if(data){
+				collection.find({}).toArray((error, result) => {
+						if(error) {
+								return response.status(500).send(error);
+						}
+						response.send(result);
+				});
+			}
+		}
+	});
+});
+
 
 app.get('/api/images/:id', (req,resp) => {
 	//CHECK FOR VALID API HERE!
