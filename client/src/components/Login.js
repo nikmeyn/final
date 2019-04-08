@@ -13,7 +13,7 @@ class Login extends React.Component{
             user: {},
         };
     }
-
+    
     updatePropertyValue(val, prop) {
         let usr = this.state.user || {};
         usr[prop] = val;
@@ -41,6 +41,7 @@ class Login extends React.Component{
             xhr.send(data);
         })
     }
+
     async login() {
         console.log(this.state)
 
@@ -57,12 +58,8 @@ class Login extends React.Component{
             if (userdata.success === true && userdata.token) {
                 localStorage.setItem('token', userdata.token);
 
-                //this.setState({ user: userdata.loginUser});
-                //this.props.updateUserLoggedIn(userdata.loginUser);
-                //browserHistory.push('/home');
-                //this.props.history.push('/home')
                 console.log(userdata);
-                this.props.authorizeUser();
+                this.props.authorizeUser(userdata.loginUser, userdata.userObject);
             } else {
                 alert(userdata.message)
             }

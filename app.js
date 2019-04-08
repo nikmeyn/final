@@ -87,6 +87,17 @@ app.get("/api/images", (request, response) => {
   });
 });
 
+app.get('/api/users/:id', (req,resp) => {
+	dblogins.findOne({id: req.params.id}, (err, data) => {
+		if (err) {
+			return resp.status(500).send(err);
+		} else {
+			resp.send(data);
+		}
+	});
+});
+
+
 app.get("/api/:api/images/", (request, response) => {
 	dblogins.find({ apikey: request.params.api}, (err, data) => {
 		if(err){

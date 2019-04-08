@@ -20,7 +20,7 @@ class App extends Component {
             favoritePhotosLocalStorage = JSON.parse(localStorage.getItem('favoritePhotosLocalStorage'));
         else
             favoritePhotosLocalStorage = [];
-        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: [], user: null, userIsLoggedIn: false};
+        this.state = {photos: [], favoritePhotos: favoritePhotosLocalStorage, photosAfterFilter: [], userObj: null, userID: null, userIsLoggedIn: false};
         this.connectToServer = this.connectToServer.bind(this);
     }
 
@@ -30,6 +30,7 @@ class App extends Component {
 
     async componentDidMount() {
         try {
+            console.log("we are in componentDidMount images");
             const url = "api/images";
             const response = await fetch(url);
             const jsonData = await response.json();
@@ -152,13 +153,12 @@ class App extends Component {
         console.log("photosAfterFilter cleared");
     }
 
-    updateUserLoggedIn = (id) => {
-        this.setState({user: id});
-        console.log("logged in user id updated");
-    }
 
-    authorizeUser = () =>{
-        this.setState({userIsLoggedIn : true});
+    //authorizesUser and attaches their login ID
+    authorizeUser = (id, userObject) =>{
+        this.setState({userIsLoggedIn : true,
+            userID: id,
+            userObj: userObject});
     }
 
     render() {
@@ -169,12 +169,13 @@ class App extends Component {
         }
             return (
                 <div>
-                    <Route path='/'exact render={() => (authorizedUser? <Home/> : <Login authorizeUser={this.authorizeUser}/>)} />
+                    <Route path='/'exact render={() => (authorizedUser? <Home userObj={this.state.userObj}/> : <Login authorizeUser={this.authorizeUser}/>)} />
                     <Route path='/home' exact component={Home}/>
                     <Route path='/login' exact component={Login}/>
                     <Route path='/browse' exact
                         render={(props) => ( authorizedUser ?
                             (<PhotoBrowser
+                                userObj={this.state.userObj}
                                 photos={photoDisplayList}
                                 photosDropdownData={this.state.photos}
                                 updatePhoto={this.updatePhoto}

@@ -40,6 +40,7 @@ app.post('/login',  async function(req, res) {
             if (compare){
                 
                 var userLoggedIn = data.id;
+                var userObj = data;
 
                 let token = jwt.sign({username: username},
                     config.secret,
@@ -51,7 +52,8 @@ app.post('/login',  async function(req, res) {
                     success: true,
                     message: 'Authentication successful!',
                     token: token,
-                    loginUser : userLoggedIn
+                    loginUser : userLoggedIn,
+                    userObject: userObj
                 });
             }else{
                 res.status(403).json({
