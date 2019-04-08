@@ -58,6 +58,7 @@ app.listen(8080, () => {
 });
 
 app.post('/add', async function(req, res){
+	try{
 	let toSave = await collection.insertOne(req.body);
 if(toSave){
 		res.json({
@@ -71,6 +72,10 @@ if(toSave){
 			message: 'Something went wrong'
 	});
 	}
+}
+catch {
+	console.log("error!!! unable to upload into the mongoDB database");
+}
 });
 
 app.get("/api/images", (request, response) => {

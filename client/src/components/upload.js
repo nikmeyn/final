@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+const randomStr = require("randomstring");
 
 class UploadImage extends React.Component {
 
@@ -89,30 +90,36 @@ class UploadImage extends React.Component {
 
 
     async createImageFinal(user) {
+        const imageData = user;
+        const randomID = randomStr.generate({
+            length: 12,
+            charset: 'alphabetic'
+          });
+        console.log(imageData);
         return new Promise((resolve, reject) => {
             var data = JSON.stringify({ //_id is automatically added
-                "id": "123456890", //random id
-                "title": user.name,
-                "description": user.discription,
+                "id": randomID, //random id
+                "title": imageData.name,
+                "description": imageData.discription,
                 'location': {'iso': "Upload", 
-                "city": user.city,
-                "country": user.country,
+                "city": imageData.city,
+                "country": imageData.country,
                 'cityCode': 0, 
                 'continent': "Upload", 
                 'latitude': 0, 
-                'longitude': 0}, 
-                'user': {'userid': user.userid, 
-                'picture': {'large': user.large, 
-                'thumbnail': user.thumb}, 
-                'firstname': user.firstname, 
-                'lastname': user.lastname},	
+                'longitude': 0},  //following data will be based from a real user
+                'user': {'userid': imageData.userid, 
+                'picture': {'large': imageData.large, 
+                'thumbnail': imageData.thumb}, 
+                'firstname': imageData.firstname, 
+                'lastname': imageData.lastname},	
                 'exif':{'make': "SONY", 
                 'model': "ILCE-7M3", 
                 'exposure_time': "1/100", 
                 'aperture': "4.81", 
                 'focal_length': "28", 
                 'iso': 2500},
-                'filename':  user.fileName,
+                'filename':  imageData.fileName.name,
                 'colors':[{'hex': "black", 'name': "black"}, 
                 {'hex': "black", 'name': "black"}, 
                 {'hex': "black", 'name': "black"}, 
