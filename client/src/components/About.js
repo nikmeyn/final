@@ -43,12 +43,15 @@ class About extends React.Component{
 				</ul>
 				
 				
-				<p>The Web Development Wisdom bestowed upon me is written in this <a href="http://funwebdev.com/"> book</a> and the Web Dev Guru himself, Randy Connolly.<br></br><br></br>
-				Unfortunately, there are 3 <strong>bugs</strong> on this website:</p>
-				<p><strong> 1) Zip file download button</strong> - browser complains about Cross-Origin Resource Sharing when downloading the jpg from a remote source<br></br>
-					<strong>2) Editing a photo after filtering</strong> - The user is able to edit photos when the PhotoList is showing all photos, but not the after filter. The Bug showed up after making the filter a dropdown instead of a text filter.<br></br>
-					(I have a hunch that it is the asynchronous setState call)<br></br>
-					<strong>3) Favorites Toggle </strong> - After Initial Render viewer needs to double click Favorite Show/Hide Toggle(I believe first click mounts the event handler and the second click executes the code)</p>
+                    <p>The Web Development Wisdom bestowed upon me is written in this <a href="http://funwebdev.com/"> book</a> and the Web Dev Guru himself, Randy Connolly.<br></br><br></br>
+                    Unfortunately, there are 3 <strong>bugs</strong> on this website:</p>
+                    <p>
+                        <strong> 1) State does not reload after upload</strong> - After uploading an image, the state does not reload automatically. This means that a new upload will not show on the list of photos until you refresh the page. <br></br>
+                        <strong> 2) Zip file download button</strong> - Browser complains about Cross-Origin Resource Sharing when downloading the jpg from a remote source<br></br>
+                        <strong>3) Editing a photo after filtering</strong> - The user is able to edit photos when the PhotoList is showing all photos, but not the after filter. The Bug showed up after making the filter a dropdown instead of a text filter.<br></br>
+                        (I have a hunch that it is the asynchronous setState call)<br></br>
+                        <strong>4) Favorites Toggle </strong> - After Initial Render viewer needs to double click Favorite Show/Hide Toggle(I believe first click mounts the event handler and the second click executes the code)
+                    </p>
 				</div>
 			</div>
 		);
