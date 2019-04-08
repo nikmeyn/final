@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 
 class UploadImage extends React.Component {
 
@@ -26,6 +24,7 @@ class UploadImage extends React.Component {
         const url = await this.uploadFile(file);
         var usr = this.state.user || {};
         usr.image = url;
+        usr.fileName = file;
         this.setState({user: usr });
         console.log(this.state);
     }
@@ -79,27 +78,46 @@ class UploadImage extends React.Component {
 
 
     async createNewImage() {
-        debugger;
         let fieldsall = this.allvaluefield();
         if (!fieldsall) {
             alert("Fill All required details");
             return;
         }
         let uploaded = await this.createImageFinal(this.state.user);
-        alert(uploaded ? "Add successful" : "Error in uploading");
+        alert(uploaded ? "Add Image successful" : "Error in uploading");
     }
 
 
     async createImageFinal(user) {
-        console.log(user);
         return new Promise((resolve, reject) => {
-            var data = JSON.stringify({
+            var data = JSON.stringify({ //_id is automatically added
+                "id": "123456890", //random id
                 "title": user.name,
                 "description": user.discription,
+                'location': {'iso': "Upload", 
                 "city": user.city,
                 "country": user.country,
-                "image": user.image
-                //add extra fields
+                'cityCode': 0, 
+                'continent': "Upload", 
+                'latitude': 0, 
+                'longitude': 0}, 
+                'user': {'userid': user.userid, 
+                'picture': {'large': user.large, 
+                'thumbnail': user.thumb}, 
+                'firstname': user.firstname, 
+                'lastname': user.lastname},	
+                'exif':{'make': "SONY", 
+                'model': "ILCE-7M3", 
+                'exposure_time': "1/100", 
+                'aperture': "4.81", 
+                'focal_length': "28", 
+                'iso': 2500},
+                'filename':  user.fileName,
+                'colors':[{'hex': "black", 'name': "black"}, 
+                {'hex': "black", 'name': "black"}, 
+                {'hex': "black", 'name': "black"}, 
+                {'hex': "black", 'name': "black"}, 
+                {'hex': "black", 'name': "black"} ] 
             });
 
             var xhr = new XMLHttpRequest();
@@ -115,6 +133,8 @@ class UploadImage extends React.Component {
 
             xhr.open("POST", "http://localhost:8080/add");
             xhr.setRequestHeader("content-type", "application/json");
+            console.log("upload data");
+            console.log(data);
             xhr.send(data);
         });
     }
@@ -153,7 +173,7 @@ class UploadImage extends React.Component {
                                                    }/>
                                         </div>
                                         <div className="col-xs-12 col-md-6">
-                                            <a className="btn btn-success btn-block btn-lg">Upload</a>
+                                            <h2>Upload</h2>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -209,7 +229,7 @@ class UploadImage extends React.Component {
                                             <input type="button" className="btn btn-success btn-block btn-lg"
                                                    onClick = {
                                                        this.createNewImage.bind(this)
-                                                   } value="Add New Image" /></div>
+                                                   } value="Upload" /></div>
                                     </div>
                                 </div>
                             </div>

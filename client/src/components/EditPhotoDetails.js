@@ -64,7 +64,7 @@ class EditPhotoDetails extends React.Component {
 
 					   <input type='hidden' name='_id' value={photo._id}/>
 
-					   <input type='submit' value='Save Changes Permantly'/>
+					   <input type='submit' value='Save Changes Permanently'/>
 
 					</form>
 						<button onClick={this.handleViewClick}>View</button>

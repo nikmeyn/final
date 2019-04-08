@@ -33,9 +33,9 @@ class App extends Component {
             //const url = "https://randyconnolly.com/funwebdev/services/travel/images.php";
             const url = "api/images";
             const response = await fetch(url);
-            console.log("response=>" + response);
+            //console.log("response=>" + response);
             const jsonData = await response.json();
-            console.log("fetched data line 25 app.js \n" + jsonData);
+           // console.log("fetched data line 25 app.js \n" + jsonData);
             this.setState({photos: jsonData});
             document.title = "Assignment 2";
             this.connecToServer();
