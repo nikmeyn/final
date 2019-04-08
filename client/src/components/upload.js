@@ -1,5 +1,9 @@
 import React from 'react';
 import '../App.css';
+import './upload.css';
+import HeaderApp from './HeaderApp.js';
+import { Helmet } from 'react-helmet';
+import catImg from './Computer-Cat.jpg';
 const randomStr = require("randomstring");
 
 class UploadImage extends React.Component {
@@ -40,16 +44,6 @@ class UploadImage extends React.Component {
             var formData = new FormData();
             formData.append("avatar", file, file.name);
 
-            //let uploadedRes = await fetch('/', {
-            //    method: 'POST',
-            //    body: formData
-            //}).then(response => response.json())
-
-            //this.setState({
-            //    uploadInProgress: false
-            //})
-
-            //return uploadedRes.path;
             var xhr = new XMLHttpRequest();
             xhr.open("POST", apiUrl, true);
 
@@ -107,12 +101,12 @@ class UploadImage extends React.Component {
                 'cityCode': 0, 
                 'continent': "Upload", 
                 'latitude': 0, 
-                'longitude': 0},  //following data will be based from a real user
-                'user': {'userid': imageData.userid, 
+                'longitude': 0},  
+                'user': {'userid': this.props.userObj.id, 
                 'picture': {'large': imageData.large, 
                 'thumbnail': imageData.thumb}, 
-                'firstname': imageData.firstname, 
-                'lastname': imageData.lastname},	
+                'firstname': this.props.userObj.firstname, 
+                'lastname': this.props.userObj.lastname},	
                 'exif':{'make': "SONY", 
                 'model': "ILCE-7M3", 
                 'exposure_time': "1/100", 
@@ -148,102 +142,28 @@ class UploadImage extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="featurette" id="about">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                                <div role="form">
-                                    <h2>Upload a photo <small></small></h2>
-                                    <hr className="colorgraph" />
-                                    <div className="row">
-                                        <div className="col-xs-12 col-md-6">
-
-                                            <input id = "myInputProfile"  type = "file"  ref = {
-                                                (ref) => this.uploadProfile = ref
-                                            }
-                                                   style = {
-                                                       {
-                                                           display: 'none'
-                                                       }
-                                                   }
-                                                   onChange = {
-                                                       this.onChangeFileProfile.bind(this)
-                                                   }
-                                            />
-
-                                            <input type="button" value="Select Image" className="btn btn-primary btn-block btn-lg"
-                                                   onClick = {
-                                                       () => {
-                                                           this.uploadProfile.click()
-                                                       }
-                                                   }/>
-                                        </div>
-                                        <div className="col-xs-12 col-md-6">
-                                            <h2>Upload</h2>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
-                                                <input type="text" name="title" id="title" className="form-control input-lg" placeholder="Title"
-                                                       value = {
-                                                           this.state.user.name
-                                                       }
-                                                       onChange = {
-                                                           (event) => this.updatePropertyValue(event.target.value, 'name')
-                                                       }/>
-                                            </div>
-                                        </div>
-                                        <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
-                                                <input type="text" name="description" id="description" className="form-control input-lg" placeholder="Description"
-                                                       value = {
-                                                           this.state.user.discription
-                                                       }
-                                                       onChange = {
-                                                           (event) => this.updatePropertyValue(event.target.value, 'discription')
-                                                       }/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
-                                                <input type="text" name="city" id="city" className="form-control input-lg" placeholder="City"
-                                                       value = {
-                                                           this.state.user.city
-                                                       }
-                                                       onChange = {
-                                                           (event) => this.updatePropertyValue(event.target.value, 'city')
-                                                       }/>
-                                            </div>
-                                        </div>
-                                        <div className="col-xs-12 col-sm-6 col-md-6">
-                                            <div className="form-group">
-                                                <input type="text" name="country" id="country" className="form-control input-lg" placeholder="Country"
-                                                       value = {
-                                                           this.state.user.country
-                                                       }
-                                                       onChange = {
-                                                           (event) => this.updatePropertyValue(event.target.value, 'country')
-                                                       }/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-xs-12 col-md-6 col-md-offset-3">
-                                            <input type="button" className="btn btn-success btn-block btn-lg"
-                                                   onClick = {
-                                                       this.createNewImage.bind(this)
-                                                   } value="Upload" /></div>
-                                    </div>
-                                </div>
-                            </div>
+    <div>
+        <HeaderApp pageTitle="Upload an Image!" />
+        <Helmet title="Upload Image" />	
+            <div className="uploadPage">
+            <article className="details">
+                    <input id = "myInputProfile"  type = "file"  ref = {(ref) => this.uploadProfile = ref}style = {{display: 'none'}}onChange = {this.onChangeFileProfile.bind(this)}/>
+                    <input type="button" className="cloudButton" value="Select Image" onClick = {() => {this.uploadProfile.click()}}/>
+                        <div className="detailsPhotoBox">
+                        <label>Title </label>
+                        <input type="text" name="title" id="title" value = {this.state.user.name} onChange = {(event) => this.updatePropertyValue(event.target.value, 'name')}/>
+                        <label>Description </label>
+                        <input type="text" name="description" id="description"value = {this.state.user.discription} onChange = {(event) => this.updatePropertyValue(event.target.value, 'discription')}/>
+                        <label>City </label>
+                        <input type="text" name="city" id="city"  pvalue = {this.state.user.city}onChange = {(event) => this.updatePropertyValue(event.target.value, 'city')}/>    
+                        <label>Country </label>
+                        <input type="text" name="country" id="country" value = {this.state.user.country } onChange = {(event) => this.updatePropertyValue(event.target.value, 'country')}/>                  
                         </div>
-                    </div>
-                </div>
+                    <input type="button" className="cloudButton" onClick = {this.createNewImage.bind(this)} value="Upload Into the Clouds!" />
+            </article> 
+            <img className="catImageDiv" src={catImg} alt="catImage"/>
             </div>
+    </div>
         );
     }
 }

@@ -1,0 +1,90 @@
+.uploadPage {
+    color: white;
+    background: url('https://source.unsplash.com/ap3LXI0fPJY/5979x3986') center/cover no-repeat;
+    height: 750px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+
+.catImageDiv{
+    width: 45%;
+    height: 69%;
+    margin-left: 3em;
+}
+  .cloudButton {
+    background: var(--button-back);
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 1em;
+    margin: 2em 0em 0em 0.75em;
+    font-weight: bolder;
+}
+
+.details{
+    width: 45%;
+}
+
+.detailsPhotoBox {
+    display: grid;
+   }
+   .detailsPhotoBox label {
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    color: black;
+   }
+   .detailsPhotoBox input {
+    padding: 0.75em;
+    border: 0;
+    border-radius: 5px;
+   }
+   .detailsPhotoBox input:focus {
+    box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.49);
+   }
+   
+   .detailsPhotoMapBox{
+       display: flex;
+       margin-left: 0.75em;
+       margin-top: 5em;
+       margin-right: 0.65em;
+       padding: 0.5em 0em 0.5em 0.5em;
+   }
+   
+   .mapDiv {
+       height: '50%';
+   }
+   
+   .haversineSmallDiv {
+       padding: 0.5em 0.5em 0.5em 0.5em;
+       width: 12em;
+       background-color: white;
+       text-align: center;
+   }
+   
+   .photoDivMap{
+       width: 12em;
+       padding: 0.5em 0.5em 0.5em 0.5em;
+       margin-top: 0.5rem;
+       margin-bottom: 0.5rem;
+       background-color: white;
+       text-align: center;
+   }
+   
+   .haversineSmallDiv h2 {
+       color: orange;
+   }
+   
+   .photoThumbRight{
+       margin-left: 0.25em;
+       margin-top: 2em;
+       width: 12em;
+       height: 10em;
+   }
+   
+   
+   
+   
+   
