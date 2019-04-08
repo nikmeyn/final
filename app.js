@@ -231,7 +231,7 @@ app.post('/api/upload', multer.single('image'), imgUpload.uploadToGcs, function 
 		}
 	})
 
-	var apiPath = "http://localhost:8080/"
+	var apiPath = "http://localhost:" +process.env.PORT || 8080 + "/";
 	
 	var storage = Multer.diskStorage({
 		destination: (req, file, cb) => {
