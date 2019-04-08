@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 
 // serves up static files from the public folder. 
 app.use(express.static('client'));
-app.use(express.static(path.join(__dirname, 'client/src')));
+app.use(express.static(path.join(__dirname, 'client/public/index.html')));
 
 // setup express middleware
 app.use(parser.json());
@@ -270,5 +270,5 @@ app.post('/profile', function (req, res) {
 	})
 
 	app.get('*', (req, res) => {
-     res.sendFile(path.join(__dirname+'/client/public/index.html'));
+     res.sendFile(path.join(__dirname+'client/public/index.html'));
 	});
