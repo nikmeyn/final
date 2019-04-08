@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 
 // serves up static files from the public folder. 
 //app.use(express.static('client'));
-app.use(express.static(path.join(__dirname, '/client/public/index.html')));
+app.use(express.static(path.join(__dirname, '/client/build/index.html')));
 
 // setup express middleware
 app.use(parser.json());
