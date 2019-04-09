@@ -226,6 +226,7 @@ app.post('/api/upload', multer.single('image'), imgUpload.uploadToGcs, function 
 	app.get('/getAllData', async function(req, res){
 		try{
 		let allData = await Demo.find({});
+		console.log(allData);
 		res.send(allData);
 		}
 		catch(e){
@@ -274,5 +275,6 @@ app.post('/profile', function (req, res) {
 	})
 
 	app.get('*', (req, res) => {
+		console.log("We are in node app.js");
      res.sendFile(path.join(__dirname+'/client/build/index.html'));
 	});

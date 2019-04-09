@@ -38,7 +38,7 @@ class App extends Component {
             document.title = "Assignment 2";
             this.connectToServer();
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
 
     }
