@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(cors());
+app.use(cors({credentials: true, origin: true}));
 
 // serves up static files from the public folder. 
 app.use(express.static('client'));
