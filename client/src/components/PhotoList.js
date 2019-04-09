@@ -13,13 +13,13 @@ render(){
 		if(this.props.photos.length >= 1){
 
 			//all values in both of these arrays are unique i am not sure why browser is complaining about distinct 'keys'
-			let uniqueCities = [...new Set(this.props.photosDropdownData.map((p) =>  p.city ))];  //this line will give back a distinct list of cities
+			let uniqueCities = [...new Set(this.props.photosDropdownData.map((p) =>  p.location.city ))];  //this line will give back a distinct list of cities
 			uniqueCities.sort( (a, b) => { //short circuit if (if it meets conditions get out of function right away)
 				if(a < b) { return -1; }
 				if(a > b) { return 1; }
 				return 0;
 			})
-			let uniqueCountries = [...new Set(this.props.photosDropdownData.map((p) =>  p.country ))]; //this code will give back a distinct list of country
+			let uniqueCountries = [...new Set(this.props.photosDropdownData.map((p) =>  p.location.country ))]; //this code will give back a distinct list of country
 			uniqueCountries.sort( (a, b) => { //short circuit if (if it meets conditions get out of function right away)
 				if(a < b) { return -1; }
 				if(a > b) { return 1; }
