@@ -41,13 +41,12 @@ class About extends React.Component{
 				<li><a href="https://fonts.googleapis.com/css?family=Pacifico"> Lato </a></li>
 				<li><a href="https://fonts.googleapis.com/css?family=Lato"> Pacifico </a></li>
 				</ul>
-				<p>API Test Links:</p><br></br>
-				<p>https://safe-crag-81509.herokuapp.com/api/images/3a5c5da5-5a12-4d2b-b0dd-abc28eaf810b</p>
-				<p>Link to all images: https://safe-crag-81509.herokuapp.com/api/af8aac94319213bbf22cf890670500f3/images</p>
-				<p>Link to single image: https://safe-crag-81509.herokuapp.com/api/images/3a5c5da5-5a12-4d2b-b0dd-abc28eaf810b </p>
+				<p>API Test Links:</p>
+				<p><a href="https://safe-crag-81509.herokuapp.com/api/af8aac94319213bbf22cf890670500f3/images"><strong>Link to all images:</strong></a> https://safe-crag-81509.herokuapp.com/api/af8aac94319213bbf22cf890670500f3/images</p>
+				<p><a href="https://safe-crag-81509.herokuapp.com/api/images/3a5c5da5-5a12-4d2b-b0dd-abc28eaf810b"><strong>Link to single image:</strong></a> https://safe-crag-81509.herokuapp.com/api/images/3a5c5da5-5a12-4d2b-b0dd-abc28eaf810b </p>
 					
 				
-                    <p>The Web Development Wisdom bestowed upon me is written in this <a href="http://funwebdev.com/"> book</a> and the Web Dev Guru himself, Randy Connolly.<br></br><br></br>
+                    <p>The Web Development Wisdom bestowed upon US is written in this <a href="http://funwebdev.com/"> book</a> and the Web Dev Guru himself, Randy Connolly.<br></br><br></br>
                     Unfortunately, there are 3 <strong>bugs</strong> on this website:</p>
                     <p>
                         <strong> 1) State does not reload after upload</strong> - After uploading an image, the state does not reload automatically. This means that a new upload will not show on the list of photos until you refresh the page. <br></br>
