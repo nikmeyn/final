@@ -35,7 +35,7 @@ class Login extends React.Component{
                 }
             });
 
-            xhr.open("POST", "http://localhost:8080/login");//need to replace with base url from some config
+            xhr.open("GET", "http://localhost:8080/api/images");//need to replace with base url from some config
             xhr.setRequestHeader("content-type", "application/json");
 
             xhr.send(data);
