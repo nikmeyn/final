@@ -8,7 +8,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "heroku-postbuild": "start && cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Nik, James, John, Gio",
   "license": "ISC",
