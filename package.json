@@ -2,7 +2,7 @@
   "name": "asg2",
   "version": "1.0.0",
   "engines": {
-    "node": "11.8"
+    "node": "11.8.0"
   },
   "description": "Assignment 2",
   "main": "app.js",
