@@ -35,7 +35,7 @@ class Login extends React.Component{
                 }
             });
 
-            xhr.open("POST", "http://localhost:8080/loginForm");//need to replace with base url from some config
+            xhr.open("POST", "https://safe-crag-81509.herokuapp.com/loginForm");//need to replace with base url from some config
             xhr.setRequestHeader("content-type", "application/json");
 
             xhr.send(data);
