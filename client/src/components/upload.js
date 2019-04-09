@@ -131,8 +131,7 @@ class UploadImage extends React.Component {
                     }
                 }
             };
-
-            xhr.open("POST", "http://localhost:8080/add");
+            xhr.open("POST", "https://safe-crag-81509.herokuapp.com/add");
             xhr.setRequestHeader("content-type", "application/json");
             console.log("upload data");
             console.log(data);
