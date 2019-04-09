@@ -36,7 +36,7 @@ class UploadImage extends React.Component {
 
     async  uploadFile(file) {
         return new Promise((resolve, reject) => {
-            const apiUrl = 'http://localhost:8080/profile';
+            const apiUrl = 'https://safe-crag-81509.herokuapp.com/profile';
             this.setState({
                 uploadInProgress: true
             });
