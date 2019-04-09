@@ -18,6 +18,7 @@ console.log("We are in node app.js");
 
 const CONNECTION_URL = "mongodb+srv://admin-1:passwordadmin-1@web3-asg2-rk0iv.mongodb.net/test?retryWrites=true";
 const DATABASE_NAME = "mytravels";
+const port = process.env.PORT || 8080;
 
 // const app = express();
 
@@ -47,10 +48,11 @@ require('./routes/users')(app)
 var database, collection;
 app.use('/uploads', serveStatic(__dirname + '/uploads'));
 
-app.listen(process.env.PORT || 8080, () => {
+app.listen(port, () => {
   MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
       if(error) {
-          throw error;
+				console.log("Unable to connect to `" + DATABASE_NAME + "`!");
+					throw error;
       }
       database = client.db(DATABASE_NAME);
 			collection = database.collection("images");
@@ -231,7 +233,7 @@ app.post('/api/upload', multer.single('image'), imgUpload.uploadToGcs, function 
 		}
 	})
 
-	var apiPath = "http://localhost:" +process.env.PORT || 8080 + "/";
+	var apiPath = "http://localhost:" + port + "/";
 	
 	var storage = Multer.diskStorage({
 		destination: (req, file, cb) => {
