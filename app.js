@@ -22,8 +22,7 @@ const port = process.env.PORT || 8080;
 
 // const app = express();
 
-// //app.use(cors())
-// // app.options('*', cors())
+
 
 var app = express();
 app.use(function(req, res, next) {
@@ -32,7 +31,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-
+app.use(cors());
 
 // serves up static files from the public folder. 
 app.use(express.static('client'));
