@@ -43,7 +43,6 @@ class Login extends React.Component{
     }
 
     async login() {
-        console.log(this.state)
 
         if (this.state.user.email && this.state.user.email !== '' && this.state.user.password && this.state.user.password !== '') {
 
